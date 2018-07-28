@@ -11,6 +11,7 @@ module SlickRubyGame
         attr_accessor :game_objects
 
         def initialize
+          super("Basic Slick Game")
             @game_objects = []
         end
 
