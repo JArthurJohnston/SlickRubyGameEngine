@@ -1,8 +1,9 @@
 include Java
-
-java_import org.newdawn.slick.BasicGame
-
 require_relative './slick_ruby_game/include_slick'
+
+java_import org.newdawn.slick.BasicGame,
+            org.newdawn.slick.AppGameContainer
+
 
 module SlickRubyGame
 
@@ -25,7 +26,9 @@ module SlickRubyGame
     end
 
     def self.start
-
+        game_container = AppGameContainer.new(MainGameLoop.new)
+        game_container.start
     end
 end
 
+SlickRubyGame.start
