@@ -1,5 +1,8 @@
+include Java
 
-require_relative './include_slick'
+java_import org.newdawn.slick.BasicGame
+
+require_relative './slick_ruby_game/include_slick'
 
 module SlickRubyGame
 
@@ -20,6 +23,9 @@ module SlickRubyGame
         end
 
     end
-    
+
+    def self.start
+
+    end
 end
 
