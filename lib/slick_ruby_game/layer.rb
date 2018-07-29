@@ -1,8 +1,8 @@
 require_relative 'game_object'
-require_relative './colliders/has_colliders'
+require_relative './colliders/handles_colliders'
 
 module SlickRubyGame
   class Layer < GameObject
-    include HandlesColliders
+    include Colliders::HandlesColliders
   end
 end

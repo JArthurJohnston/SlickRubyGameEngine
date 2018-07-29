@@ -1,6 +1,8 @@
-require_relative '../game_object'
+require_relative 'game_object'
 
-class Level < SlickRubyGame::GameObject
-    attr_accessor :layers
+module SlickRubyGame
+    class Level < GameObject
+        attr_accessor :layers
 
+    end
 end
