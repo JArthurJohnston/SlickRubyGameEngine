@@ -37,5 +37,17 @@ describe AbstractCollider do
                 expect(@abstract_collider.collides_with?(@other_collider)).to eq false
             end
         end
+
+        context 'has a shape that is right next to the other colliders shape' do
+
+            before 'lack of collision' do
+                @other_collider = AbstractCollider.new
+                @other_collider.shape = Rectangle.new(5,0,5,3)
+            end
+
+            it 'should collide with the other collider' do
+                expect(@abstract_collider.collides_with?(@other_collider)).to eq true
+            end
+        end
     end
 end
