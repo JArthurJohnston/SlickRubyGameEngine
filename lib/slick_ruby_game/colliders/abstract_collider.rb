@@ -8,5 +8,9 @@ module SlickRubyGame::Colliders
             return shape.intersects(other_collider.shape)
         end
 
+        def handle_collision
+            # Stub method, meant to be overridden
+        end
+
     end
 end
