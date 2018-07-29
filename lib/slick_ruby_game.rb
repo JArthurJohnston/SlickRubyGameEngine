@@ -43,5 +43,3 @@ module SlickRubyGame
         game_container.start
     end
 end
-
-SlickRubyGame.start
