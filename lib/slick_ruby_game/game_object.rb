@@ -1,7 +1,9 @@
 
 module SlickRubyGame
+
   class GameObject
-    attr_accessor :game_objects
+    attr_reader :game_objects
+    attr_accessor :parent
 
     def initialize
       @game_objects = []
@@ -31,5 +33,20 @@ module SlickRubyGame
         each_game_object.render(graphics_container, graphics)
       end
     end
+
+    def add_game_object(game_object)
+      @game_objects.push(game_object)
+      game_object.parent= self
+    end
+
+    def game_objects=(game_objects)
+      game_objects.each do
+        |each_game_object|
+        self.add_game_object(each_game_object)
+      end
+
+    end
+
   end
+
 end
