@@ -15,13 +15,25 @@ module SlickRubyGame
             @game_objects = []
         end
 
-        def update(gc, delta)
+        def init(graphics_container)
+            game_objects.each do
+                |each_object|
+                each_object.init(graphics_container)
+            end
         end
-        
-        def init(gc)
+
+        def update(graphics_container, delta)
+            game_objects.each do
+                |each_object|
+                each_object.update(graphics_container, delta)
+            end
         end
         
         def render(graphics_container, graphics)
+            game_objects.each do
+                |each_object|
+                each_object.render(graphics_container, graphics)
+            end
         end
 
     end
