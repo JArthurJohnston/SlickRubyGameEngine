@@ -10,8 +10,8 @@ module SlickRubyGame
     class MainGameLoop < BasicGame
         attr_accessor :game_objects
 
-        def initialize
-          super("Basic Slick Game")
+        def initialize(title)
+          super(title)
             @game_objects = []
         end
 
@@ -36,10 +36,15 @@ module SlickRubyGame
             end
         end
 
+        def add_game_object(game_object)
+            @game_objects.push(game_object)
+            game_object.parent = self
+        end
+
     end
 
     def self.start
-        game_container = AppGameContainer.new(MainGameLoop.new)
+        game_container = AppGameContainer.new(MainGameLoop.new("Simple Game"))
         game_container.start
     end
 end
