@@ -14,8 +14,8 @@ describe SlickRubyGame::Picture do
         before 'drawing the image' do
             @expected_x = 4423
             @expected_y = 9786
-            @picture.start_x = @expected_x
-            @picture.start_y = @expected_y
+            @picture.offset_x = @expected_x
+            @picture.offset_y = @expected_y
         end
 
         it 'should draw the image' do

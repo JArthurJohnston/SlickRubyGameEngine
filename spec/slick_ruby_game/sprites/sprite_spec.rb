@@ -16,8 +16,8 @@ describe SlickRubyGame::Sprite do
         @expected_y_offset = 87675
         @expected_render_width = 234
         @expected_render_height = 423
-        @sprite.x_offset = @expected_x_offset
-        @sprite.y_offset = @expected_y_offset
+        @sprite.offset_x = @expected_x_offset
+        @sprite.offset_y = @expected_y_offset
         @sprite.render_width = @expected_render_width
         @sprite.render_height = @expected_render_height
 

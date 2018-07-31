@@ -14,9 +14,7 @@ module SlickRubyGame
                         :render_width,
                         :render_height,
                         :spritesheet_location,
-                        :animation_speed,
-                        :x_offset,
-                        :y_offset
+                        :animation_speed
 
         def init(game_container)
             @sprite_image = Image.new(spritesheet_location)
@@ -26,7 +24,7 @@ module SlickRubyGame
         end
 
         def render(graphics_container, graphics)
-            @sprite_animation.draw(x_offset, y_offset, render_width, render_height)
+            @sprite_animation.draw(offset_x, offset_y, render_width, render_height)
         end
 
     end

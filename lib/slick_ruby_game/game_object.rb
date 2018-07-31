@@ -3,9 +3,13 @@ module SlickRubyGame
 
   class GameObject
     attr_reader :game_objects
-    attr_accessor :parent
+    attr_accessor :parent,
+                  :offset_x,
+                  :offset_y
 
     def initialize
+      @offset_x = 0
+      @offset_y = 0
       @game_objects = []
     end
 
