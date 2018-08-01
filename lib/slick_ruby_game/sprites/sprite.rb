@@ -20,7 +20,7 @@ module SlickRubyGame
             @sprite_image = Image.new(spritesheet_location)
             @sprite_sheet = SpriteSheet.new(@sprite_image, sprite_width, sprite_height)
             @sprite_animation = Animation.new(@sprite_sheet, animation_speed)
-            @sprite_animation.stop
+            # @sprite_animation.stop
         end
 
         def render(graphics_container, graphics)
