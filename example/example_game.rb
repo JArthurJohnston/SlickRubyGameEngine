@@ -2,6 +2,7 @@ require_relative '../lib/slick_ruby_game'
 require_relative '../lib/slick_ruby_game/picture'
 require_relative '../lib/slick_ruby_game/sprites/sprite'
 require_relative '../lib/slick_ruby_game/input/input_handler'
+require_relative 'example_input'
 
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
@@ -20,25 +21,9 @@ bounding_llama.offset_y = 900
 bounding_llama.animation_speed = 100
 bounding_llama.movement_speed = 0.2
 
-class SpriteMovementHandler < SlickRubyGame::Input::AbstractInputHandler
-    def event_triggered(graphics_container, delta)
-        # bounding_llama var not available in this scope :(
-        parent.start_moving
-        movement = parent.movement_speed * delta
-        parent.offset_x = parent.offset_x + movement
-    end
+movement_handler = SpriteMovementHandler.new
 
-    def event_not_triggered(gc, d)
-        parent.stop_moving
-        parent.reset_animation
-    end
-end
-
-move_right_handler = SpriteMovementHandler.new
-move_right_handler.input_type = SlickRubyGame::Input::InputType::DOWN
-move_right_handler.key_code = Input::KEY_RIGHT
-
-bounding_llama.add_game_object(move_right_handler)
+bounding_llama.add_game_object(movement_handler)
 
 game.add_game_object(background)
 game.add_game_object(bounding_llama)
