@@ -6,7 +6,9 @@ describe SlickRubyGame::Sprite do
 
   before 'each' do
     @sprite = SlickRubyGame::Sprite.new
-    
+    @game_object = double('game-object')
+    allow(@game_object).to receive(:parent=)
+    @sprite.add_game_object(@game_object)
   end
 
   describe '#render' do
@@ -27,6 +29,7 @@ describe SlickRubyGame::Sprite do
 
     it 'should draw the sprite animation' do
         expect(@animation_double).to receive(:draw).with(@expected_x_offset, @expected_y_offset, @expected_render_width, @expected_render_height)
+        expect(@game_object).to receive(:render).with(nil, nil)
 
         @sprite.render(nil, nil)
     end

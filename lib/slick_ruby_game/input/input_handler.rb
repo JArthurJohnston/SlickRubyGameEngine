@@ -12,23 +12,17 @@ module SlickRubyGame
             DOWN = :DOWN
         end
 
-        class InputHandler < SlickRubyGame::GameObject
-
-            def self.for(key_code)
-                handler = self.new
-                handler.key_code = key_code
-                return handler
-            end
-
+        class AbstractInputHandler < SlickRubyGame::GameObject
             attr_accessor :key_code,
-                            :input_type,
-                            :update_block
+                          :input_type
 
             def update(graphics_container, delta)
                 super
                 input = graphics_container.get_input
                 if(input_triggered?(input))
-                    update_block.call(graphics_container, delta)
+                    event_triggered(graphics_container, delta)
+                else
+                    event_not_triggered(graphics_container, delta)
                 end
             end
 
@@ -41,15 +35,12 @@ module SlickRubyGame
                 return false
             end
 
-            def on_key_pressed(&block)
-                puts 'Block: ' + block.to_s
-                self.input_type = InputType::PRESSED
-                update_block = block
+            def event_triggered(graphics_container, delta)
+                # Meant to be overridden
             end
 
-            def on_key_down(&block)
-                self.input_type = InputType::DOWN
-                update_block = block
+            def event_not_triggered(graphics_container, delta)
+                # Meant to be overridden
             end
         end
     end
