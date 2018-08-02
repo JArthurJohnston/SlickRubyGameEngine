@@ -30,6 +30,8 @@ describe SlickRubyGame::Level do
 
       @level.add_game_object
 
+      fail
+
     end
 
   end

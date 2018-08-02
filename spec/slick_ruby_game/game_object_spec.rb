@@ -108,7 +108,7 @@ module SlickRubyGame
               end
 
               it 'should pass the collider up to its parent' do
-
+                fail
               end
 
             end
