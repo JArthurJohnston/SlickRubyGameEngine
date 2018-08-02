@@ -47,10 +47,4 @@ describe SlickRubyGame::Level do
 
   end
 
-  context 'collision handling' do
-    it 'should handle collisions' do
-      fail
-    end
-  end
-
 end

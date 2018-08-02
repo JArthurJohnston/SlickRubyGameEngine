@@ -34,7 +34,11 @@ describe SlickRubyGame::Layer do
 
   context 'collision handling' do
     it 'should handle collisions' do
-      fail
+      collider = double('collider')
+
+      @layer.add_collider(collider)
+      
+      expect(@layer.colliders.include?(collider)).to be true
     end
   end
 
