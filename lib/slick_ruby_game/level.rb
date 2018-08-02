@@ -8,10 +8,15 @@ module SlickRubyGame
                         :current_layer
 
         def initialize
+            @current_layer = build_default_layer
+            @layers = [@current_layer]
+        end
+
+        def build_default_layer
             default_layer = Layer.new
+            default_layer.parent = self
             default_layer.identifier = 'Default'
-            @current_layer = default_layer
-            @layers = [default_layer]
+            return default_layer
         end
 
         def game_objects

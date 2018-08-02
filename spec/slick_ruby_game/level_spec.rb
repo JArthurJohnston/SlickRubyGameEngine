@@ -29,9 +29,10 @@ describe SlickRubyGame::Level do
     it 'should add game objects to its default layer' do
       game_object = double('game-object')
       expect(game_object).to receive(:parent=).with(@layer)
-      expect(@layer).to receive(:add_game_object).with(game_object)
 
       @level.add_game_object(game_object)
+
+      expect(@layer.game_objects.first).to be game_object
     end
 
     it 'should add layers to its layers' do
