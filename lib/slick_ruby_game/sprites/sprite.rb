@@ -20,6 +20,7 @@ module SlickRubyGame
         def init(game_container)
             super
             @sprite_image = Image.new(spritesheet_location)
+            @sprite_image.set_filter(Image::FILTER_NEAREST);
             @sprite_sheet = SpriteSheet.new(@sprite_image, sprite_width, sprite_height)
             @sprite_animation = Animation.new(@sprite_sheet, animation_speed)
             @sprite_animation.stop
