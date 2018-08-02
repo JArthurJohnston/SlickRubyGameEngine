@@ -46,6 +46,10 @@ module SlickRubyGame
           end
         end
 
+        def add_collider(collider)
+          parent.add_collider(collider)
+        end
+
         def offset_x
             return 0
         end

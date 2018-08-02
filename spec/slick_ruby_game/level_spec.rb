@@ -13,6 +13,8 @@ describe SlickRubyGame::Level do
     it 'should have default layers' do
       expect(@level.layers.size).to be 1
       expect(@level.layers.first.identifier).to match 'Default'
+      expect(@level.layers.first.parent).to be @level
+
     end
   end
 
@@ -27,13 +29,27 @@ describe SlickRubyGame::Level do
     it 'should add game objects to its default layer' do
       game_object = double('game-object')
       expect(game_object).to receive(:parent=).with(@layer)
+      expect(@layer).to receive(:add_game_object).with(game_object)
 
-      @level.add_game_object
-
-      fail
-
+      @level.add_game_object(game_object)
     end
 
+    it 'should add layers to its layers' do
+      layer2 = double('layer-2')
+
+      expect(layer2).to receive(:parent=).with(@level)
+
+      @level.add_layer(layer2)
+
+      expect(@level.layers.last).to be layer2
+    end
+
+  end
+
+  context 'collision handling' do
+    it 'should handle collisions' do
+      fail
+    end
   end
 
 end

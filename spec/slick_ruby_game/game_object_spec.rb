@@ -102,18 +102,18 @@ module SlickRubyGame
             end
 
             context 'adding colliders' do
+
               before 'adding a collider' do
-                @game_object1.add_game_object(@game_object2)
+                @parent = double('game-object')
+                @game_object1.parent=(@parent)
                 @collider = double('collider')
               end
 
-              it 'should pass the collider up to its parent' do
-                fail
-              end
-
+                it 'should pass the collider up to its parent' do
+                expect(@parent).to receive(:add_collider).with(@collider)
+                @game_object1.add_collider(@collider)
+                end
             end
         end
-
     end
-
 end

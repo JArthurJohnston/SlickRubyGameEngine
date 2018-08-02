@@ -18,5 +18,10 @@ module SlickRubyGame::Colliders
             # Stub method, meant to be overridden
         end
 
+        def parent=(game_object)
+            super
+            parent.add_collider(self)
+        end
+
     end
 end

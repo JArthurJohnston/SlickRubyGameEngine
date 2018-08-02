@@ -49,5 +49,17 @@ describe AbstractCollider do
                 expect(@abstract_collider.collides_with?(@other_collider)).to eq true
             end
         end
+
+        describe '#parent=' do
+
+            it 'should add itself to its parents colliders' do
+                game_object = double('game-object')
+                expect(game_object).to receive(:add_collider).with(@abstract_collider)
+
+                @abstract_collider.parent= game_object
+                expect(@abstract_collider.parent).to be game_object
+            end
+
+        end
     end
 end
