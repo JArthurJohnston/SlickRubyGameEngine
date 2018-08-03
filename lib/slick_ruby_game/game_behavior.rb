@@ -8,31 +8,29 @@ module SlickRubyGame
             return []
         end
 
-        def init(graphics_container)
-          puts 'Initing: ' + self.class.name
-          puts "\tGame Objects: " + game_objects.to_s
+        def init(game_container)
             game_objects.each do
             |each_game_object|
-              each_game_object.init(graphics_container)
+              each_game_object.init(game_container)
             end
         end
       
-        def update(graphics_container, delta)
+        def update(game_container, delta)
           game_objects.each do
           |each_game_object|
-            each_game_object.update(graphics_container, delta)
-            each_game_object.post_update(graphics_container, delta)
+            each_game_object.update(game_container, delta)
+            each_game_object.post_update(game_container, delta)
           end
         end
     
-        def post_update(graphics_container, delta)
+        def post_update(game_container, delta)
           # abstract: override
         end
     
-        def render(graphics_container, graphics)
+        def render(game_container, graphics)
           game_objects.each do
           |each_game_object|
-            each_game_object.render(graphics_container, graphics)
+            each_game_object.render(game_container, graphics)
           end
         end
     

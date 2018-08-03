@@ -21,6 +21,10 @@ module SlickRubyGame
         handle_collisions_between(colliders.first, colliders)
       end
 
+      def post_update(graphics_container, delta)
+        process_collisions
+      end
+
       def handle_collisions_between(a_collider, colliders)
         if(colliders.empty?)
           return

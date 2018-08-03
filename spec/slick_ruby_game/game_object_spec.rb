@@ -3,11 +3,12 @@ require_relative '../../lib/slick_ruby_game/game_object'
 module SlickRubyGame
 
     describe GameObject do
-        context 'default values' do
-            before 'each' do
-                @game_object = GameObject.new
-            end
 
+        before 'each' do
+            @game_object = GameObject.new
+        end
+
+        context 'default values' do
             it 'should have an empty list of game objects' do
                 expect(@game_object.game_objects).to be_empty
             end
@@ -18,9 +19,19 @@ module SlickRubyGame
             end
         end
 
+        context 'setting fields' do
+            it 'should be able to update offsets' do
+                @game_object.offset_x= 2423
+                @game_object.offset_y=768
+
+                expect(@game_object.offset_x).to match(2423)
+                expect(@game_object.offset_y).to match(768)
+            end
+        end
+
+
         context 'with some sub game objects' do
             before 'using a game object' do
-                @game_object = GameObject.new
                 @sub_game_object1 = double('game-object-1')
                 @sub_game_object2 = double('game-object-2')
                 allow(@sub_game_object1).to receive(:parent=)
