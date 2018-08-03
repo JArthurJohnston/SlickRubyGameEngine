@@ -13,8 +13,8 @@ describe SlickRubyGame::GameBehavior do
     describe 'default values' do
 
         it 'should have default offsets' do
-            expect(@behavior.offset_x).to be 0
-            expect(@behavior.offset_y).to be 0
+            expect(@behavior.offset_x).to match 0.0
+            expect(@behavior.offset_y).to match 0.0
         end
         
         it 'shouldnt have a parent' do

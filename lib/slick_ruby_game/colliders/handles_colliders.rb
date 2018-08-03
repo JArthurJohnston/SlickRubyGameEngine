@@ -13,6 +13,7 @@ module SlickRubyGame
         colliders.push(collider)
       end
 
+      #  Get rid of this, all colliders should be added as game objects
       def colliders=(an_array_of_colliders)
         @colliders = an_array_of_colliders
       end

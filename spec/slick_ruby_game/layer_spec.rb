@@ -1,6 +1,7 @@
 require 'rspec'
 
 require_relative '../../lib/slick_ruby_game/layer'
+require_relative '../../lib/slick_ruby_game/colliders/abstract_collider'
 
 describe SlickRubyGame::Layer do
 
@@ -33,13 +34,26 @@ describe SlickRubyGame::Layer do
   end
 
   context 'collision handling' do
-    it 'should handle collisions' do
-      collider = double('collider')
-
-      @layer.add_collider(collider)
-      
-      expect(@layer.colliders.include?(collider)).to be true
+    before 'each' do
+      @layer = SlickRubyGame::Layer.new
+      @collider = SlickRubyGame::Colliders::AbstractCollider.new
+      @parent_object = SlickRubyGame::GameObject.new
     end
+
+    it 'should handle collisions' do
+      @layer.add_collider(@collider)
+      
+      expect(@layer.colliders.include?(@collider)).to be true
+    end
+
+    it 'should handle child colliders' do
+      @layer.add_game_object(@parent_object)
+      @parent_object.add_game_object(@collider)
+
+      expect(@layer.colliders.include?(@collider)).to be true
+    end
+
+
   end
 
 end

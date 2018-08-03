@@ -51,11 +51,11 @@ module SlickRubyGame
         end
 
         def offset_x
-            return 0
+            return 0.0
         end
 
         def offset_y
-            return 0
+            return 0.0
         end
 
         def identifier
