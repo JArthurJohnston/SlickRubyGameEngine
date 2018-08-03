@@ -31,12 +31,22 @@ describe 'Abstract Physical Collider' do
             expect(@collider.last_known_x).to match 55
             expect(@collider.last_known_y).to match 66
         end
+    end
 
-        it 'should set its shapes position based on its parent' do
+    describe '#update' do
+        before 'updating' do
+            @collider.shape = Rectangle.new(3,2,5,3)
+
+            @collider.update(nil, nil)
+        end
+
+        it 'should update its shapes position' do
             expect(@collider.shape.get_x).to match 60
             expect(@collider.shape.get_y).to match 72
         end
+
     end
+
 
     describe '#handle_collision' do
         before 'collision' do
