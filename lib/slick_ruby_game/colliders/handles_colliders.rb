@@ -10,7 +10,7 @@ module SlickRubyGame
       end
 
       def add_collider(collider)
-        @colliders.push(collider)
+        colliders.push(collider)
       end
 
       def colliders=(an_array_of_colliders)
@@ -18,7 +18,7 @@ module SlickRubyGame
       end
 
       def process_collisions
-        handle_collisions_between(@colliders.first, @colliders)
+        handle_collisions_between(colliders.first, colliders)
       end
 
       def handle_collisions_between(a_collider, colliders)

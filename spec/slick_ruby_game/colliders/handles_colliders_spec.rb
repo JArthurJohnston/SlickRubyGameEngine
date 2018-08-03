@@ -41,6 +41,30 @@ describe 'HandlesColliders' do
     end
 
   end
+
+  context 'with no colliders' do
+
+    it 'should do nothing when processing collisions' do
+      @subject.process_collisions
+    end
+
+    it 'should be able to add a collider' do
+      collider = double('collider')
+      @subject.add_collider(collider)
+
+      expect(@subject.colliders.first).to be collider
+    end
+
+    it 'should be able to add a collider' do
+      collider1 = double('collider-1')
+      collider2 = double('collider-2')
+      @subject.colliders=[collider1, collider2]
+
+      expect(@subject.colliders.at(0)).to be collider1
+      expect(@subject.colliders.at(1)).to be collider2
+    end
+
+  end
 end
 
 module SlickRubyGame

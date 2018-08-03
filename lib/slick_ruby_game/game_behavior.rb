@@ -9,6 +9,8 @@ module SlickRubyGame
         end
 
         def init(graphics_container)
+          puts 'Initing: ' + self.class.name
+          puts "\tGame Objects: " + game_objects.to_s
             game_objects.each do
             |each_game_object|
               each_game_object.init(graphics_container)

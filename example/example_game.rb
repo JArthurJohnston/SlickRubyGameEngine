@@ -1,11 +1,16 @@
 require_relative '../lib/slick_ruby_game'
 require_relative '../lib/slick_ruby_game/picture'
+require_relative '../lib/slick_ruby_game/level'
 require_relative '../lib/slick_ruby_game/sprites/sprite'
+require_relative '../lib/slick_ruby_game/colliders/line_collider'
 require_relative '../lib/slick_ruby_game/input/input_handler'
 require_relative 'example_input'
 
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
+level = SlickRubyGame::Level.new
+
+game.add_game_object(level)
 
 background = SlickRubyGame::Picture.new
 background.image_location = './res/GFV_train_HD.jpg'
@@ -25,8 +30,13 @@ movement_handler = SpriteMovementHandler.new
 
 bounding_llama.add_game_object(movement_handler)
 
-game.add_game_object(background)
-game.add_game_object(bounding_llama)
+level.add_game_object(background)
+level.add_game_object(bounding_llama)
+
+level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1920, 1070))
+level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1225, 763))
+level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1225, 763, 1920, 794))
+level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1920, 794, 1920, 1070))
 
 game_container = AppGameContainer.new(game)
 game_width = 1920
