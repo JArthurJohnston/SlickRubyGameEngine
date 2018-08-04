@@ -16,14 +16,22 @@ module SlickRubyGame::Colliders
             shape.set_y(parent.offset_y + self.offset_y)
         end
 
-        def post_update(gc, delta)
-            @last_known_x = parent.offset_x
-            @last_known_y = parent.offset_y
+        def handle_collision
+            # puts 'X: Original: ' + @last_known_x.to_s + ' New: ' + parent.offset_x.to_s
+            # puts 'Y: Original: ' + @last_known_y.to_s + ' New: ' + parent.offset_y.to_s
+
+            # delta_x = @last_known_x - parent.offset_x
+            # delta_y = @last_known_y - parent.offset_y
+
+            # parent.offset_x = parent.offset_x + (delta_x * -1)
+            # parent.offset_y = parent.offset_y + (delta_y * -1)
+            parent.offset_x = @last_known_x
+            parent.offset_y = @last_known_y
         end
 
-        def handle_collision
-            parent.offset_x = last_known_x
-            parent.offset_y = last_known_y
+        def finished_colliding
+            @last_known_x = parent.offset_x
+            @last_known_y = parent.offset_y
         end
 
     end

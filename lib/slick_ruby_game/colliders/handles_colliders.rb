@@ -29,14 +29,31 @@ module SlickRubyGame
       def handle_collisions_between(a_collider, colliders)
         if(colliders.empty?)
           return
+          a_collider.finished_colliding
         end
         other_colliders = colliders.drop(1)
         other_colliders.each do
           |each_other_collider|
-          a_collider.handle_collision_with(each_other_collider)
+          if(a_collider.collides_with?(each_other_collider))
+            a_collider.handle_collision
+            each_other_collider.handle_collision
+          end
         end
+        a_collider.finished_colliding
         handle_collisions_between(other_colliders.first, other_colliders)
       end
+
+
+      # def process_collisions_for(collider)
+      #   colliders.each do |e|
+      #     if(collider != e)
+      #       if(collider.collides_with?(e))
+      #         collider.handle_collision
+      #       end
+      #     end
+      #   end
+      #   collider.finished_colliding
+      # end
 
     end
   end
