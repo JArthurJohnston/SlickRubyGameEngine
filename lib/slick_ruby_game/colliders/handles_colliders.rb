@@ -43,18 +43,6 @@ module SlickRubyGame
         handle_collisions_between(other_colliders.first, other_colliders)
       end
 
-
-      # def process_collisions_for(collider)
-      #   colliders.each do |e|
-      #     if(collider != e)
-      #       if(collider.collides_with?(e))
-      #         collider.handle_collision
-      #       end
-      #     end
-      #   end
-      #   collider.finished_colliding
-      # end
-
     end
   end
 end

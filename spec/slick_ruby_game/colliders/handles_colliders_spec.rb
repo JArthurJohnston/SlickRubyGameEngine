@@ -31,10 +31,28 @@ describe 'HandlesColliders' do
 
     describe '#process_collisions' do
       it 'should process collisions for each collider' do
-        expect(@collider1). to receive(:handle_collision_with).with(@collider2)
-        expect(@collider1). to receive(:handle_collision_with).with(@collider3)
-        
-        expect(@collider2). to receive(:handle_collision_with).with(@collider3)
+        expect(@collider1).to receive(:collides_with?).with(@collider2)
+        expect(@collider1).to receive(:collides_with?).with(@collider3)
+        expect(@collider2).to receive(:collides_with?).with(@collider3)
+
+        expect(@collider1).to receive(:finished_colliding)
+        expect(@collider2).to receive(:finished_colliding)
+        expect(@collider3).to receive(:finished_colliding)
+
+        @subject.process_collisions
+      end
+
+      it 'should handle collisions for colliders that collided' do
+        expect(@collider1).to receive(:collides_with?).with(@collider2).and_return(false)
+        expect(@collider1).to receive(:collides_with?).with(@collider3).and_return(true)
+        expect(@collider2).to receive(:collides_with?).with(@collider3).and_return(false)
+
+        expect(@collider1).to receive :handle_collision
+        expect(@collider3).to receive :handle_collision
+
+        expect(@collider1).to receive(:finished_colliding)
+        expect(@collider2).to receive(:finished_colliding)
+        expect(@collider3).to receive(:finished_colliding)
 
         @subject.process_collisions
       end

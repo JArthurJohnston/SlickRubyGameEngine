@@ -21,9 +21,13 @@ describe SlickRubyGame::Layer do
   describe '#post_update' do
 
     it 'should handle collisions for sub game objects' do
-      expect(@collider1).to receive(:handle_collision_with)
-      expect(@collider1).to receive(:handle_collision_with)
-      expect(@collider2).to receive(:handle_collision_with)
+      expect(@collider1).to receive(:collides_with?).with(@collider2)
+      expect(@collider1).to receive(:collides_with?).with(@collider3)
+      expect(@collider2).to receive(:collides_with?).with(@collider3)
+
+      expect(@collider1).to receive :finished_colliding
+      expect(@collider2).to receive :finished_colliding
+      expect(@collider3).to receive :finished_colliding
 
       gc = double('graphics-container')
       delta = 7724
