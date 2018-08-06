@@ -47,4 +47,26 @@ describe SlickRubyGame::Level do
 
   end
 
+  context 'updating' do
+    before :each do
+      CollisionHandler.instance.instance_variable_set(:@colliders, [])
+      @collider1 = double 'collider'
+      @collider2 = double 'collider'
+      SlickRubyGame::Colliders::CollisionHandler.instance.add_collider(@collider1)
+      SlickRubyGame::Colliders::CollisionHandler.instance.add_collider(@collider2)
+    end
+
+    after :each do
+      CollisionHandler.instance.instance_variable_set(:@colliders, [])
+    end
+
+    it 'should tigger collision handling' do
+      expect(@collider1).to receive :collides_with?
+
+      expect(@collider1).to receive :finished_colliding
+      expect(@collider2).to receive :finished_colliding
+
+      @level.update(nil, nil)
+    end
+  end
 end

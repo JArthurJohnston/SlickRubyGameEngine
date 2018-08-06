@@ -1,5 +1,6 @@
 require_relative 'game_behavior'
 require_relative 'game_object'
+require_relative './colliders/collision_handler'
 
 module SlickRubyGame
     class Level
@@ -17,6 +18,11 @@ module SlickRubyGame
             default_layer.parent = self
             default_layer.identifier = 'Default Layer'
             return default_layer
+        end
+
+        def update(gc, delta)
+            super
+            Colliders::CollisionHandler.instance.process_collisions
         end
 
         def game_objects
