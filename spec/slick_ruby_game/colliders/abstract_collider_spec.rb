@@ -8,9 +8,13 @@ AbstractCollider = SlickRubyGame::Colliders::AbstractCollider
 
 describe AbstractCollider do
 
-    before 'all' do
+    before :each do
         @abstract_collider = AbstractCollider.new
         @abstract_collider.shape = Rectangle.new(0,0,5,3)
+    end
+
+    after :each do
+        CollisionHandler.instance.instance_variable_set(:@colliders, [])
     end
 
     describe '#collides_with?' do
@@ -50,14 +54,11 @@ describe AbstractCollider do
             end
         end
 
-        describe '#parent=' do
+        describe '#init' do
 
-            it 'should add itself to its parents colliders' do
-                game_object = double('game-object')
-                expect(game_object).to receive(:add_collider).with(@abstract_collider)
-
-                @abstract_collider.parent= game_object
-                expect(@abstract_collider.parent).to be game_object
+            it 'should add itself to the collision handler' do
+                @abstract_collider.init(nil)
+                expect(CollisionHandler.instance.colliders.include?(@abstract_collider)).to be true
             end
 
         end

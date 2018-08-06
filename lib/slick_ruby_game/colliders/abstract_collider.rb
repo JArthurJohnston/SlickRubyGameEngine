@@ -1,8 +1,14 @@
 require_relative '../game_object'
+require_relative 'collision_handler'
 
 module SlickRubyGame::Colliders
     class AbstractCollider < SlickRubyGame::GameObject
         attr_accessor :shape
+
+        def init(game_container)
+            super
+            CollisionHandler.instance.add_collider(self)
+        end
 
         def collides_with?(other_collider)
             return shape.intersects(other_collider.shape)
@@ -21,11 +27,5 @@ module SlickRubyGame::Colliders
         def finished_colliding
             #override
         end
-
-        def parent=(game_object)
-            super
-            parent.add_collider(self)
-        end
-
     end
 end

@@ -1,5 +1,5 @@
 require_relative 'game_behavior'
-require_relative 'layer'
+require_relative 'game_object'
 
 module SlickRubyGame
     class Level
@@ -13,9 +13,9 @@ module SlickRubyGame
         end
 
         def build_default_layer
-            default_layer = Layer.new
+            default_layer = GameObject.new
             default_layer.parent = self
-            default_layer.identifier = 'Default'
+            default_layer.identifier = 'Default Layer'
             return default_layer
         end
 
