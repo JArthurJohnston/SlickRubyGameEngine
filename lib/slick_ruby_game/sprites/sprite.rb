@@ -11,8 +11,8 @@ module SlickRubyGame
     class Sprite < GameObject
         attr_accessor :sprite_width,
                         :sprite_height,
-                        :render_width,
-                        :render_height,
+                        :width,
+                        :height,
                         :spritesheet_location,
                         :animation_speed,
                         :movement_speed
@@ -28,7 +28,7 @@ module SlickRubyGame
 
         def render(graphics_container, graphics)
             super
-            @sprite_animation.draw(offset_x, offset_y, render_width, render_height)
+            @sprite_animation.draw(offset_x, offset_y, width, height)
         end
 
         def start_moving
