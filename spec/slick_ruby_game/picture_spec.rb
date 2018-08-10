@@ -4,7 +4,11 @@ require_relative '../../lib/slick_ruby_game/picture'
 describe SlickRubyGame::Picture do
 
     before 'each' do
+        parent = double('parent')
+        allow(parent).to receive(:offset_x).and_return(0)
+        allow(parent).to receive(:offset_y).and_return(0)
         @picture = SlickRubyGame::Picture.new
+        @picture.parent= parent
         @image_double = double('image')
         @picture.instance_variable_set(:@image, @image_double)
     end

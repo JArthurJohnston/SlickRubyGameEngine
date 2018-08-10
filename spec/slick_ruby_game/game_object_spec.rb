@@ -5,7 +5,11 @@ module SlickRubyGame
     describe GameObject do
 
         before 'each' do
+            parent = double('parent-game-object')
+            allow(parent).to receive(:offset_x).and_return(0)
+            allow(parent).to receive(:offset_y).and_return(0)
             @game_object = GameObject.new
+            @game_object.parent= parent
         end
 
         context 'default values' do

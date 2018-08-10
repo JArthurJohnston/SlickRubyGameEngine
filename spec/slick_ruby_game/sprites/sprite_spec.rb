@@ -5,9 +5,12 @@ require_relative '../../../lib/slick_ruby_game/sprites/sprite'
 describe SlickRubyGame::Sprite do
 
   before 'each' do
-    @sprite = SlickRubyGame::Sprite.new
     @game_object = double('game-object')
     allow(@game_object).to receive(:parent=)
+
+    allow(@game_object).to receive(:offset_x).and_return(0)
+    allow(@game_object).to receive(:offset_y).and_return(0)
+    @sprite = SlickRubyGame::Sprite.new
     @sprite.add_game_object(@game_object)
   end
 

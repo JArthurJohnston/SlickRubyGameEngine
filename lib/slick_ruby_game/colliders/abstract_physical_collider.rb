@@ -12,8 +12,8 @@ module SlickRubyGame::Colliders
 
         def update(game_container, delta)
             super
-            shape.set_x(parent.offset_x + self.offset_x)
-            shape.set_y(parent.offset_y + self.offset_y)
+            shape.set_x(self.offset_x)
+            shape.set_y(self.offset_y)
         end
 
         def handle_collision

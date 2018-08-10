@@ -14,11 +14,11 @@ module SlickRubyGame::Colliders
         end
 
         def shape_x
-            return parent.offset_x + offset_x
+            return self.offset_x
         end
 
         def shape_y
-            return parent.offset_y +  offset_y
+            return self.offset_y
         end
 
     end

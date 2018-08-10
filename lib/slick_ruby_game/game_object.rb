@@ -15,5 +15,14 @@ module SlickRubyGame
       @identifier = ''
     end
 
+    def offset_x
+      return parent.offset_x + @offset_x
+    end
+
+    def offset_y 
+      return parent.offset_y + @offset_y
+    end
+    # this screwed up the collider on the llama!
+
   end
 end
