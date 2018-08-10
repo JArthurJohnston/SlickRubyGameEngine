@@ -8,6 +8,8 @@ module SlickRubyGame
             parent = double('parent-game-object')
             allow(parent).to receive(:offset_x).and_return(0)
             allow(parent).to receive(:offset_y).and_return(0)
+            allow(parent).to receive(:scale_x).and_return(1)
+            allow(parent).to receive(:scale_y).and_return(1)
             @game_object = GameObject.new
             @game_object.parent= parent
         end

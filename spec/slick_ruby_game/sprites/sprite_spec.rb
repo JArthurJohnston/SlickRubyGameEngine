@@ -8,6 +8,8 @@ describe SlickRubyGame::Sprite do
     parent = double('parent')
     allow(parent).to receive(:offset_x).and_return(0)
     allow(parent).to receive(:offset_y).and_return(0)
+    allow(parent).to receive(:scale_x).and_return(1)
+    allow(parent).to receive(:scale_y).and_return(1)
 
     @game_object = double('game-object')
     allow(@game_object).to receive(:parent=)

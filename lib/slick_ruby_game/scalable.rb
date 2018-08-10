@@ -1,8 +1,8 @@
 
 module SlickRubyGame
     module Scalable
-        attr_writer :width, :height
-        attr_accessor :scale_x, :scale_y
+        attr_writer :width, :height, :scale_x, :scale_y
+        attr_accessor :parent
 
         def initialize
             super
@@ -18,6 +18,14 @@ module SlickRubyGame
 
         def height
             return scale_y * @height
+        end
+
+        def scale_x
+            return parent.scale_x * @scale_x
+        end
+
+        def scale_y
+            return parent.scale_y * @scale_y
         end
 
     end
