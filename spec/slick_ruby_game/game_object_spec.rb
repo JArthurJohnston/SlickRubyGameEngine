@@ -21,6 +21,11 @@ module SlickRubyGame
                 expect(@game_object.offset_x).to be 0
                 expect(@game_object.offset_y).to be 0
             end
+
+            it 'should have zeroed width and height' do
+                expect(@game_object.width).to be 0
+                expect(@game_object.height).to be 0
+            end
         end
 
         context 'setting fields' do

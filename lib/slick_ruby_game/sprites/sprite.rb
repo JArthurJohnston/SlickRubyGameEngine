@@ -11,8 +11,6 @@ module SlickRubyGame
     class Sprite < GameObject
         attr_accessor :sprite_width,
                         :sprite_height,
-                        :width,
-                        :height,
                         :spritesheet_location,
                         :animation_speed,
                         :movement_speed
