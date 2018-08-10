@@ -1,10 +1,12 @@
 require_relative 'game_behavior'
 require_relative 'game_object'
+require_relative 'scalable'
 require_relative './colliders/collision_handler'
 
 module SlickRubyGame
     class Level
         include GameBehavior
+        include Scalable
         attr_accessor :layers,
                         :current_layer
 
@@ -36,6 +38,14 @@ module SlickRubyGame
         def add_layer(layer)
             @layers.push(layer)
             layer.parent= self
+        end
+
+        def scale_x
+            return 1
+        end
+
+        def scale_y
+            return 1
         end
 
     end
