@@ -9,15 +9,14 @@ module SlickRubyGame::Colliders
 
         def init(game_container)
             super
-            @shape = Rectangle.new(shape_x, shape_y ,width, height)
+            @shape = Rectangle.new(offset_x, offset_y ,width, height)
         end
 
-        def shape_x
-            return self.offset_x
-        end
-
-        def shape_y
-            return self.offset_y
+        def update(game_container, delta)
+            super
+            puts print_string
+            @shape.set_width(width)
+            @shape.set_height(height)
         end
 
     end

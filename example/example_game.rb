@@ -54,7 +54,6 @@ bounding_llama.add_game_object(movement_handler)
 level.add_game_object(background)
 bounding_llama.add_game_object(llama_collider)
 
-# level.add_game_object(bounding_llama)
 camera_perspective.add_game_object(bounding_llama)
 level.add_game_object(camera_perspective)
 
