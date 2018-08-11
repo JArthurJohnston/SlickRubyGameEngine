@@ -2,6 +2,7 @@ require_relative '../lib/slick_ruby_game'
 require_relative '../lib/slick_ruby_game/picture'
 require_relative '../lib/slick_ruby_game/level'
 require_relative '../lib/slick_ruby_game/sprites/sprite'
+require_relative '../lib/slick_ruby_game/sprites/camera_perspective'
 require_relative '../lib/slick_ruby_game/colliders/line_collider'
 require_relative '../lib/slick_ruby_game/colliders/physical_rectangle_collider'
 require_relative '../lib/slick_ruby_game/input/input_handler'
@@ -19,6 +20,11 @@ end
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 level = SlickRubyGame::Level.new
+level.width = 1920
+level.height = 1080 #these should be handled at a higher place than the level
+camera_perspective = SlickRubyGame::CameraPerspective.new
+camera_perspective.top_percentage= 0.1
+camera_perspective.bottom_percentage= 3
 
 game.add_game_object(level)
 
@@ -46,8 +52,12 @@ movement_handler = SpriteMovementHandler.new
 bounding_llama.add_game_object(movement_handler)
 
 level.add_game_object(background)
-level.add_game_object(bounding_llama)
 bounding_llama.add_game_object(llama_collider)
+
+# level.add_game_object(bounding_llama)
+camera_perspective.add_game_object(bounding_llama)
+level.add_game_object(camera_perspective)
+
 
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1920, 1070))
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(449, 1071, 1225, 763))

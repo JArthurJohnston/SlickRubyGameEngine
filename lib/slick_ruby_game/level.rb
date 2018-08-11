@@ -8,7 +8,9 @@ module SlickRubyGame
         include GameBehavior
         include Scalable
         attr_accessor :layers,
-                        :current_layer
+                        :current_layer,
+                        :width,
+                        :height
 
         def initialize
             @current_layer = build_default_layer
@@ -46,6 +48,16 @@ module SlickRubyGame
 
         def scale_y
             return 1
+        end
+
+        def width=(width)
+            @width = width
+            @current_layer.width = width
+        end
+
+        def height=(height)
+            @height = height
+            @current_layer.height = height
         end
 
     end

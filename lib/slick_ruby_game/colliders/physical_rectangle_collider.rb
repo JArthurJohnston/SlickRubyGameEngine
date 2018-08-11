@@ -6,7 +6,6 @@ java_import org.newdawn.slick.geom.Rectangle
 
 module SlickRubyGame::Colliders
     class PhysicalRectangleCollider < AbstractPhysicalCollider
-        attr_accessor :width, :height
 
         def init(game_container)
             super
