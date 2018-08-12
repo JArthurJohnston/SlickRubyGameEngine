@@ -13,19 +13,22 @@ module SlickRubyGame
             @game_objects.each do
                 |each_object|
                 each_object.init(game_container)
-                scale_value = each_object.offset_y * scale_delta
-                each_object.scale_x = scale_value
-                each_object.scale_y = scale_value
+                update_scales_for(each_object)
             end
+        end
+
+        def update_scales_for(game_object)
+            scale_value = game_object.offset_y * scale_delta
+            game_object.scale_x = scale_value
+            game_object.scale_y = scale_value
+            # This only works if the scales are equal. 
         end
         
         def update(game_container, delta)
             @game_objects.each do
                 |each_object|
                 each_object.update(game_container, delta)
-                scale_value = each_object.offset_y * scale_delta
-                each_object.scale_x = scale_value
-                each_object.scale_y = scale_value
+                update_scales_for(each_object)
             end
         end
 

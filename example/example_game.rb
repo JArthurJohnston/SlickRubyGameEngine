@@ -3,6 +3,7 @@ require_relative '../lib/slick_ruby_game/picture'
 require_relative '../lib/slick_ruby_game/level'
 require_relative '../lib/slick_ruby_game/sprites/sprite'
 require_relative '../lib/slick_ruby_game/sprites/camera_perspective'
+require_relative '../lib/slick_ruby_game/sprites/area_camera_perspective'
 require_relative '../lib/slick_ruby_game/colliders/line_collider'
 require_relative '../lib/slick_ruby_game/colliders/physical_rectangle_collider'
 require_relative '../lib/slick_ruby_game/input/input_handler'
@@ -22,9 +23,9 @@ game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 level = SlickRubyGame::Level.new
 level.width = 1920
 level.height = 1080 #these should be handled at a higher place than the level
-camera_perspective = SlickRubyGame::CameraPerspective.new
-camera_perspective.top_percentage= 0.1
-camera_perspective.bottom_percentage= 3
+camera_perspective = SlickRubyGame::AreaCameraPerspective.new
+camera_perspective.top_percentage_at(0.1, 500)
+camera_perspective.bottom_percentage_at(3, 1080)
 
 game.add_game_object(level)
 
@@ -38,7 +39,7 @@ bounding_llama.sprite_height = 48
 bounding_llama.width = 128
 bounding_llama.height = 128
 bounding_llama.offset_x = 1200
-bounding_llama.offset_y = 900
+bounding_llama.offset_y = 700
 bounding_llama.animation_speed = 100
 bounding_llama.movement_speed = 0.2
 
