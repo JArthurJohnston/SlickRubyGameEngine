@@ -5,13 +5,13 @@ module SlickRubyGame
     describe GameObject do
 
         before 'each' do
-            parent = double('parent-game-object')
-            allow(parent).to receive(:offset_x).and_return(0)
-            allow(parent).to receive(:offset_y).and_return(0)
-            allow(parent).to receive(:scale_x).and_return(1)
-            allow(parent).to receive(:scale_y).and_return(1)
+            @parent = double('parent-game-object')
+            allow(@parent).to receive(:offset_x).and_return(0)
+            allow(@parent).to receive(:offset_y).and_return(0)
+            allow(@parent).to receive(:scale_x).and_return(1)
+            allow(@parent).to receive(:scale_y).and_return(1)
             @game_object = GameObject.new
-            @game_object.parent= parent
+            @game_object.parent= @parent
         end
 
         context 'default values' do
@@ -123,18 +123,26 @@ module SlickRubyGame
                 end
             end
 
-            context 'adding colliders' do
+            describe 'offset_distance' do
 
-              before 'adding a collider' do
-                @parent = double('game-object')
-                @game_object1.parent=(@parent)
-                @collider = double('collider')
-              end
+                before 'each' do
+                    @parent = double('parent-game-object')
+                    allow(@parent).to receive(:offset_x).and_return(0)
+                    allow(@parent).to receive(:offset_y).and_return(0)
+                    allow(@parent).to receive(:scale_x).and_return(3.4)
+                    allow(@parent).to receive(:scale_y).and_return(2.7)
 
-                it 'should pass the collider up to its parent' do
-                expect(@parent).to receive(:add_collider).with(@collider)
-                @game_object1.add_collider(@collider)
+                    @game_object.offset_x = 4
+                    @game_object.offset_y = 7
+
+                    @game_object.parent= @parent
                 end
+
+                it 'sould return the distance from its offsets to its parents offsets' do
+                    expect(@game_object.offset_distance).to be_within(0.0001).of 8.06225774829855
+                end
+
+
             end
         end
     end

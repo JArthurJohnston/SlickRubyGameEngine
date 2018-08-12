@@ -6,6 +6,8 @@ describe SlickRubyGame::Scalable do
         parent = double('parent')
         allow(parent).to receive(:scale_x).and_return 1
         allow(parent).to receive(:scale_y).and_return 1
+        allow(parent).to receive(:offset_x).and_return 0
+        allow(parent).to receive(:offset_y).and_return 0
         @scalable_parent = ScalableObject.new
         @scalable_parent.parent= parent
         
@@ -51,9 +53,8 @@ describe SlickRubyGame::Scalable do
                 expect(@subject.height).to match 7.5
             end
         end
-    
-    end
 
+    end
 
 end
 

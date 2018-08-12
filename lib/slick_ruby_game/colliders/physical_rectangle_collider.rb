@@ -14,7 +14,6 @@ module SlickRubyGame::Colliders
 
         def update(game_container, delta)
             super
-            puts print_string
             @shape.set_width(width)
             @shape.set_height(height)
         end
