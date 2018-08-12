@@ -29,17 +29,6 @@ module SlickRubyGame
                 expect(@game_object.height).to be 0
             end
 
-            it 'should calculate deltas' do
-                @game_object.offset_x = 4
-                @game_object.offset_y = 7
-
-                expect(@game_object.delta_x).to match 4
-                expect(@game_object.delta_y).to match 7
-
-                expect(@game_object.offset_x).to match 4
-                expect(@game_object.offset_y).to match 7
-            end
-
         end
 
         context 'setting fields' do

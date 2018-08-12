@@ -13,7 +13,7 @@ module SlickRubyGame
             @game_objects.each do
                 |each_object|
                 each_object.init(game_container)
-                scale_value = each_object.offset_y * calculate_y_delta
+                scale_value = each_object.offset_y * scale_delta
                 each_object.scale_x = scale_value
                 each_object.scale_y = scale_value
             end
@@ -23,7 +23,7 @@ module SlickRubyGame
             @game_objects.each do
                 |each_object|
                 each_object.update(game_container, delta)
-                scale_value = each_object.offset_y * calculate_y_delta
+                scale_value = each_object.offset_y * scale_delta
                 each_object.scale_x = scale_value
                 each_object.scale_y = scale_value
             end
@@ -35,7 +35,7 @@ module SlickRubyGame
             end
         end
 
-        def calculate_y_delta
+        def scale_delta
             return (bottom_percentage - top_percentage)/self.parent.height
         end
 

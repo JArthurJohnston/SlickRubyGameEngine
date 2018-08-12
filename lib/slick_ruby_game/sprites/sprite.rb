@@ -17,6 +17,7 @@ module SlickRubyGame
 
         def init(game_container)
             super
+            # puts print_string
             @sprite_image = Image.new(spritesheet_location)
             @sprite_image.set_filter(Image::FILTER_NEAREST);
             @sprite_sheet = SpriteSheet.new(@sprite_image, sprite_width, sprite_height)
@@ -26,6 +27,7 @@ module SlickRubyGame
 
         def render(graphics_container, graphics)
             super
+            puts print_string
             @sprite_animation.draw(offset_x, offset_y, width, height)
         end
 

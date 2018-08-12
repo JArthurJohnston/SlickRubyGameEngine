@@ -42,6 +42,11 @@ describe SlickRubyGame::CameraPerspective do
         @subject.update(nil, nil)
 
         expect(@game_object.width).to be_within(0.01).of 6.0
+
+        @subject.update(nil, nil)
+        @subject.update(nil, nil)
+
+        expect(@game_object.width).to be_within(0.01).of 6.0
     end
 
     it 'should calculate y_delta upon init' do

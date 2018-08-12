@@ -11,8 +11,6 @@ describe 'Abstract Physical Collider' do
         @other_collider = SlickRubyGame::Colliders::AbstractCollider.new
 
         @parent = double('game-object')
-        allow(@parent).to receive(:local_offset_x).and_return(55)
-        allow(@parent).to receive(:local_offset_y).and_return(66)
         allow(@parent).to receive(:offset_x).and_return(55)
         allow(@parent).to receive(:offset_y).and_return(66)
         allow(@parent).to receive(:scale_x).and_return(1)

@@ -6,13 +6,12 @@ module SlickRubyGame::Colliders
 
         def init(game_container)
             super
-            @last_known_x = parent.offset_x
-            @last_known_y = parent.offset_y
+            @last_known_x = parent.local_offset_x
+            @last_known_y = parent.local_offset_y
         end
 
         def update(game_container, delta)
             super
-            puts print_string
             shape.set_x(self.offset_x)
             shape.set_y(self.offset_y)
         end

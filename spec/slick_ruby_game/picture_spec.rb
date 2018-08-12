@@ -7,6 +7,8 @@ describe SlickRubyGame::Picture do
         parent = double('parent')
         allow(parent).to receive(:offset_x).and_return(0)
         allow(parent).to receive(:offset_y).and_return(0)
+        allow(parent).to receive(:scale_x).and_return(1)
+        allow(parent).to receive(:scale_y).and_return(1)
         @picture = SlickRubyGame::Picture.new
         @picture.parent= parent
         @image_double = double('image')
