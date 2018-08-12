@@ -5,6 +5,7 @@ require_relative '../../../lib/slick_ruby_game/colliders/abstract_collider'
 java_import org.newdawn.slick.geom.Rectangle
 
 AbstractCollider = SlickRubyGame::Colliders::AbstractCollider
+CollisionHandler = SlickRubyGame::Colliders::CollisionHandler
 
 describe AbstractCollider do
 

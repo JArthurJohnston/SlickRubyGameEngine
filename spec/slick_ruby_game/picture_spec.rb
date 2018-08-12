@@ -1,4 +1,4 @@
-
+require 'rspec'
 require_relative '../../lib/slick_ruby_game/picture'
 
 describe SlickRubyGame::Picture do
