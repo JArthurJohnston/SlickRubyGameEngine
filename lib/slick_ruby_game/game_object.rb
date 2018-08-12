@@ -19,11 +19,27 @@ module SlickRubyGame
     end
 
     def offset_x
-      return (parent.offset_x + @offset_x) #* parent.scale_x
+      return (parent.offset_x + (delta_x * scale_x))
     end
 
     def offset_y 
-      return (parent.offset_y + @offset_y) #* parent.scale_y
+      return (parent.offset_y + (delta_y * scale_y))
+    end
+
+    def local_offset_x
+      return @offset_x
+    end
+
+    def local_offset_y
+      @offset_y
+    end
+
+    def delta_x
+      return local_offset_x - parent.local_offset_x
+    end
+
+    def delta_y
+      return local_offset_y - parent.local_offset_y
     end
 
     def offset_distance
@@ -31,8 +47,9 @@ module SlickRubyGame
     end
 
     def print_string
-      return self.class.name + ' X: ' + offset_x.to_s + 'Y: ' + offset_y.to_s +
-        ' W: ' + width.to_s + ' H: ' + height.to_s + ' SX: ' + scale_x.to_s + ' SY: ' + scale_y.to_s
+      return self.class.name + ' X: ' + offset_x.to_s + ' Y: ' + offset_y.to_s +
+        ' W: ' + width.to_s + ' H: ' + height.to_s + ' SX: ' + scale_x.to_s + ' SY: ' + scale_y.to_s + 
+        ' DX: ' + delta_x.to_s + ' DY: ' + delta_y.to_s
     end
 
   end

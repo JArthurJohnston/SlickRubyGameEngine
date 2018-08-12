@@ -12,6 +12,7 @@ module SlickRubyGame::Colliders
 
         def update(game_container, delta)
             super
+            puts print_string
             shape.set_x(self.offset_x)
             shape.set_y(self.offset_y)
         end

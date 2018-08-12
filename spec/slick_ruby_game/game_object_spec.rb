@@ -28,6 +28,18 @@ module SlickRubyGame
                 expect(@game_object.width).to be 0
                 expect(@game_object.height).to be 0
             end
+
+            it 'should calculate deltas' do
+                @game_object.offset_x = 4
+                @game_object.offset_y = 7
+
+                expect(@game_object.delta_x).to match 4
+                expect(@game_object.delta_y).to match 7
+
+                expect(@game_object.offset_x).to match 4
+                expect(@game_object.offset_y).to match 7
+            end
+
         end
 
         context 'setting fields' do
@@ -123,7 +135,7 @@ module SlickRubyGame
                 end
             end
 
-            describe 'offset_distance' do
+            describe 'scaled offsets' do
 
                 before 'each' do
                     @parent = double('parent-game-object')
@@ -142,6 +154,10 @@ module SlickRubyGame
                     expect(@game_object.offset_distance).to be_within(0.0001).of 8.06225774829855
                 end
 
+                it 'should add scaling to its offsets' do
+                    expect(@game_object.offset_x).to be_within(0.01).of 13.6
+                    expect(@game_object.offset_y).to be_within(0.01).of 18.9
+                end
 
             end
         end

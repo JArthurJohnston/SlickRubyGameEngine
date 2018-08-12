@@ -18,17 +18,7 @@ module SlickRubyGame
                 each_object.scale_y = scale_value
             end
         end
-
-        def validate_fields
-            if(self.parent.height <= 0)
-                raise 'Parent height must be non negative'
-            end
-        end
-
-        def calculate_y_delta
-            return (bottom_percentage - top_percentage)/self.parent.height
-        end
-
+        
         def update(game_container, delta)
             @game_objects.each do
                 |each_object|
@@ -37,6 +27,16 @@ module SlickRubyGame
                 each_object.scale_x = scale_value
                 each_object.scale_y = scale_value
             end
+        end
+
+        def validate_fields
+            if(self.parent.height <= 0)
+                raise 'Parent height must be greater than zero'
+            end
+        end
+
+        def calculate_y_delta
+            return (bottom_percentage - top_percentage)/self.parent.height
         end
 
     end

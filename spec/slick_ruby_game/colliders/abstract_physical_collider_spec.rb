@@ -10,15 +10,19 @@ describe 'Abstract Physical Collider' do
         @collider = SlickRubyGame::Colliders::AbstractPhysicalCollider.new
         @other_collider = SlickRubyGame::Colliders::AbstractCollider.new
 
-        @game_object = double('game-object')
-        allow(@game_object).to receive(:offset_x).and_return(55)
-        allow(@game_object).to receive(:offset_y).and_return(66)
+        @parent = double('game-object')
+        allow(@parent).to receive(:local_offset_x).and_return(55)
+        allow(@parent).to receive(:local_offset_y).and_return(66)
+        allow(@parent).to receive(:offset_x).and_return(55)
+        allow(@parent).to receive(:offset_y).and_return(66)
+        allow(@parent).to receive(:scale_x).and_return(1)
+        allow(@parent).to receive(:scale_y).and_return(1)
 
-        allow(@game_object).to receive(:add_collider).with(@collider)
+        allow(@parent).to receive(:add_collider).with(@collider)
 
         @collider.offset_x = 5
         @collider.offset_y = 6
-        @collider.parent= @game_object
+        @collider.parent= @parent
     end
 
     describe '#init' do
@@ -58,8 +62,8 @@ describe 'Abstract Physical Collider' do
         end
         
         it 'should reset its parents position on collision' do
-            expect(@game_object).to receive(:offset_x=).with(33)
-            expect(@game_object).to receive(:offset_y=).with(44)
+            expect(@parent).to receive(:offset_x=).with(33)
+            expect(@parent).to receive(:offset_y=).with(44)
 
             @collider.handle_collision_with(@other_collider)
         end
