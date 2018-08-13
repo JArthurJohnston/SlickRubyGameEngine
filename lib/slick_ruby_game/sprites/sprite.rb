@@ -25,8 +25,8 @@ module SlickRubyGame
         end
 
         def render(graphics_container, graphics)
-            super
             @sprite_animation.draw(offset_x, offset_y, width, height)
+            super
         end
 
         def start_moving

@@ -139,10 +139,6 @@ module SlickRubyGame
                     @game_object.parent= @parent
                 end
 
-                it 'sould return the distance from its offsets to its parents offsets' do
-                    expect(@game_object.offset_distance).to be_within(0.0001).of 8.06225774829855
-                end
-
                 it 'should add scaling to its offsets' do
                     expect(@game_object.offset_x).to be_within(0.01).of 13.6
                     expect(@game_object.offset_y).to be_within(0.01).of 18.9

@@ -24,7 +24,7 @@ level = SlickRubyGame::Level.new
 level.width = 1920
 level.height = 1080 #these should be handled at a higher place than the level
 camera_perspective = SlickRubyGame::AreaCameraPerspective.new
-camera_perspective.top_percentage_at(0.1, 500)
+camera_perspective.top_percentage_at(0.1, 600)
 camera_perspective.bottom_percentage_at(3, 1080)
 
 game.add_game_object(level)
@@ -39,7 +39,7 @@ bounding_llama.sprite_height = 48
 bounding_llama.width = 128
 bounding_llama.height = 128
 bounding_llama.offset_x = 1200
-bounding_llama.offset_y = 700
+bounding_llama.offset_y = 600
 bounding_llama.animation_speed = 100
 bounding_llama.movement_speed = 0.2
 
@@ -47,7 +47,7 @@ llama_collider = SlickRubyGame::Colliders::PhysicalRectangleCollider.new
 llama_collider.width = 10
 llama_collider.height = 10
 llama_collider.offset_x = 54
-llama_collider.offset_y = 54
+llama_collider.offset_y = 100
 
 movement_handler = SpriteMovementHandler.new
 bounding_llama.add_game_object(movement_handler)

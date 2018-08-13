@@ -49,10 +49,10 @@ describe SlickRubyGame::CameraPerspective do
         expect(@game_object.width).to be_within(0.01).of 6.0
     end
 
-    it 'should calculate y_delta upon init' do
+    it 'should scale_delta upon init' do
         expected_y_delta = 0.03
 
-        expect(@subject.calculate_y_delta).to be_within(0.0001).of(expected_y_delta)
+        expect(@subject.scale_delta).to be_within(0.0001).of(expected_y_delta)
     end
 
 end
