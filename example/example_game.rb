@@ -1,23 +1,59 @@
-require_relative '../lib/slick_ruby_game'
-require_relative '../lib/slick_ruby_game/picture'
-require_relative '../lib/slick_ruby_game/level'
-require_relative '../lib/slick_ruby_game/sprites/sprite'
-require_relative '../lib/slick_ruby_game/sprites/camera_perspective'
-require_relative '../lib/slick_ruby_game/sprites/area_camera_perspective'
-require_relative '../lib/slick_ruby_game/colliders/line_collider'
-require_relative '../lib/slick_ruby_game/colliders/physical_rectangle_collider'
-require_relative '../lib/slick_ruby_game/input/input_handler'
-require_relative '../lib/slick_ruby_game/colliders/abstract_collider'
-require_relative 'example_input'
+require 'slick_ruby_game_engine'
+# require_relative '../lib/slick_ruby_game_engine'
+# require_relative '../lib/slick_ruby_game/picture'
+# require_relative '../lib/slick_ruby_game/level'
+# require_relative '../lib/slick_ruby_game/sprites/sprite'
+# require_relative '../lib/slick_ruby_game/sprites/camera_perspective'
+# require_relative '../lib/slick_ruby_game/sprites/area_camera_perspective'
+# require_relative '../lib/slick_ruby_game/colliders/line_collider'
+# require_relative '../lib/slick_ruby_game/colliders/physical_rectangle_collider'
+# require_relative '../lib/slick_ruby_game/input/input_handler'
+# require_relative '../lib/slick_ruby_game/colliders/abstract_collider'
+# require_relative 'example_input'
 
-class SlickRubyGame::Colliders::AbstractCollider
+# class SlickRubyGame::Colliders::AbstractCollider
 
-    def render(game_container, graphics)
-        super(game_container, graphics)
-        graphics.draw(self.shape)
+#     def render(game_container, graphics)
+#         super(game_container, graphics)
+#         graphics.draw(self.shape)
+#     end
+# end
+
+class SpriteMovementHandler < SlickRubyGame::GameObject
+
+    def update(gc, delta)
+        super
+        input = gc.get_input()
+        move_distance = delta * parent.movement_speed
+
+        is_moving_right = input.is_key_down(Input::KEY_RIGHT)
+        is_moving_left = input.is_key_down(Input::KEY_LEFT)
+        is_moving_up = input.is_key_down(Input::KEY_UP)
+        is_moving_down = input.is_key_down(Input::KEY_DOWN)
+        is_moving = (is_moving_right || is_moving_left || is_moving_up || is_moving_down)
+
+        if is_moving
+            parent.start_moving
+        else
+            parent.stop_moving
+            parent.reset_animation
+        end
+
+        if is_moving_right
+            parent.offset_x = parent.offset_x + move_distance
+        end
+        if is_moving_left
+            parent.offset_x = parent.offset_x - move_distance
+        end
+
+        if is_moving_up
+            parent.offset_y = parent.offset_y - move_distance
+        end
+        if is_moving_down
+            parent.offset_y = parent.offset_y + move_distance
+        end
     end
 end
-
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 level = SlickRubyGame::Level.new
@@ -62,11 +98,11 @@ level.add_game_object(camera_perspective)
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1920, 1070))
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(449, 1071, 1225, 763))
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1226, 764, 1920, 794))
-level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1921, 795, 1921, 1071))
+level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1919, 795, 1919, 1071))
 
 game_container = AppGameContainer.new(game)
 game_width = 1920
 game_height  = 1080
-fullscreen_game = true
+fullscreen_game = false
 game_container.set_display_mode(game_width, game_height, fullscreen_game)
 game_container.start
