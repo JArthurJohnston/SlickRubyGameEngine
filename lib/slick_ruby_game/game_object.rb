@@ -1,10 +1,12 @@
 require_relative 'game_behavior'
 require_relative 'scalable'
+require_relative './serializing/serializable'
 
 module SlickRubyGame
   class GameObject
     include GameBehavior
     include Scalable
+    include Serializing::Serializable
     attr_reader :game_objects,
                 :identifier
     attr_accessor :offset_x,
