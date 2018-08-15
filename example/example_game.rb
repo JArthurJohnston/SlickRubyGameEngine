@@ -1,15 +1,7 @@
-require 'slick_ruby_game_engine'
-# require_relative '../lib/slick_ruby_game_engine'
-# require_relative '../lib/slick_ruby_game/picture'
-# require_relative '../lib/slick_ruby_game/level'
-# require_relative '../lib/slick_ruby_game/sprites/sprite'
-# require_relative '../lib/slick_ruby_game/sprites/camera_perspective'
-# require_relative '../lib/slick_ruby_game/sprites/area_camera_perspective'
-# require_relative '../lib/slick_ruby_game/colliders/line_collider'
-# require_relative '../lib/slick_ruby_game/colliders/physical_rectangle_collider'
-# require_relative '../lib/slick_ruby_game/input/input_handler'
-# require_relative '../lib/slick_ruby_game/colliders/abstract_collider'
-# require_relative 'example_input'
+require 'srge'
+require 'srge/sprites'
+require 'srge/colliders'
+require_relative 'example_input'
 
 # class SlickRubyGame::Colliders::AbstractCollider
 

@@ -1,4 +1,4 @@
-require_relative '../lib/slick_ruby_game/game_object'
+require 'srge/input'
 
 class SpriteMovementHandler < SlickRubyGame::GameObject
 
