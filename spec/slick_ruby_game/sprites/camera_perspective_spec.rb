@@ -14,7 +14,6 @@ describe SlickRubyGame::CameraPerspective do
         allow(subject_parent).to receive(:width).and_return(30)
         allow(subject_parent).to receive(:height).and_return(@expected_height)
 
-
         @subject = SlickRubyGame::CameraPerspective.new
         @subject.top_percentage= 0.1
         @subject.bottom_percentage= 1.6
