@@ -12,6 +12,7 @@ require_relative 'example_input'
 # end
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
+
 level = SlickRubyGame::Level.new
 level.width = 1920
 level.height = 1080 #these should be handled at a higher place than the level
@@ -19,7 +20,7 @@ camera_perspective = SlickRubyGame::AreaCameraPerspective.new
 camera_perspective.top_percentage_at(0.1, 600)
 camera_perspective.bottom_percentage_at(2, 1080)
 
-game.add_game_object(level)
+game.add_level(level)
 
 background = SlickRubyGame::Picture.new
 background.image_location = './res/GFV_train_HD.jpg'
