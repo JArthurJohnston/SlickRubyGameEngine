@@ -8,7 +8,7 @@ java_import org.newdawn.slick.BasicGame,
 module SlickRubyGame
 
     class MainGameLoop < BasicGame
-        attr_accessor :levels
+        attr_accessor :levels, :identifier
 
         def initialize(title)
           super(title)

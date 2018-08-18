@@ -1,3 +1,3 @@
-require_relative 'main_editor'
+require_relative 'ide'
 
-MainEditor.new.set_visible(true)
+SlickRubyGame::IDE.start
