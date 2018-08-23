@@ -11,7 +11,8 @@ require_relative 'example_input'
 #     end
 # end
 
-game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
+
+ = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 
 level = SlickRubyGame::Level.new
 level.width = 1920

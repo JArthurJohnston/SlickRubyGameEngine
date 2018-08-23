@@ -2,6 +2,7 @@ include Java
 
 require_relative '../../slick_ruby_game/include_slick'
 require_relative '../../slick_ruby_game/main_game_loop'
+require_relative 'game_tree_panel'
 
 java_import javax.swing.JFrame,
             javax.swing.JPanel,
@@ -40,12 +41,14 @@ module SlickRubyGame
                 def init_main_panels
                     @main_game_panel = CanvasGameContainer.new(@ide.game)
                     @main_game_panel.set_background(Color::BLACK)
-                    game_heirarchy_tree = JTree.new
+                    game_heirarchy_tree = GameTree.new(@ide.game)
                     object_details_panel = JPanel.new
+                    bottom_panel = JPanel.new
             
                     add(game_heirarchy_tree, BorderLayout::WEST)
                     add(@main_game_panel, BorderLayout::CENTER)
                     add(object_details_panel, BorderLayout::EAST)
+                    add(bottom_panel, BorderLayout::SOUTH)
                 end
             
                 def set_visible(is_visible)

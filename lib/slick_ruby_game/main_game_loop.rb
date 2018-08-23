@@ -13,6 +13,7 @@ module SlickRubyGame
         def initialize(title)
           super(title)
             @levels = []
+            @identifier = title
         end
 
         def init(game_container)
@@ -39,6 +40,10 @@ module SlickRubyGame
         def add_level(game_object)
             @levels.push(game_object)
             game_object.parent = self
+        end
+
+        def game_objects
+            return @levels
         end
 
     end
