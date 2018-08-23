@@ -12,7 +12,7 @@ require_relative 'example_input'
 # end
 
 
- = SlickRubyGame::MainGameLoop.new('A Day at the Station')
+game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 
 level = SlickRubyGame::Level.new
 level.width = 1920
@@ -58,9 +58,4 @@ level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(449, 1071, 1225
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1226, 764, 1920, 794))
 level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1919, 795, 1919, 1071))
 
-game_container = AppGameContainer.new(game)
-game_width = 1920
-game_height  = 1080
-fullscreen_game = false
-game_container.set_display_mode(game_width, game_height, fullscreen_game)
-game_container.start
+SRGE.start(game)
