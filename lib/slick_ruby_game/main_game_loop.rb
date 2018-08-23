@@ -1,14 +1,15 @@
 include Java
 require_relative 'include_slick'
 
-java_import org.newdawn.slick.BasicGame,
-            org.newdawn.slick.AppGameContainer
+java_import org.newdawn.slick.BasicGame
 
 
 module SlickRubyGame
 
     class MainGameLoop < BasicGame
-        attr_accessor :levels, :identifier
+        attr_accessor :levels, 
+                    :identifier, 
+                    :current_level
 
         def initialize(title)
           super(title)
@@ -17,24 +18,16 @@ module SlickRubyGame
         end
 
         def init(game_container)
-            levels.each do
-                |each_object|
-                each_object.init(game_container)
-            end
+            @current_level= @levels.first
+            @current_level.init(game_container)
         end
 
         def update(game_container, delta)
-            levels.each do
-                |each_object|
-                each_object.update(game_container, delta)
-            end
+            @current_level.update(game_container, delta)
         end
         
         def render(game_container, graphics)
-            levels.each do
-                |each_object|
-                each_object.render(game_container, graphics)
-            end
+            @current_level.render(game_container, graphics)
         end
 
         def add_level(game_object)
@@ -46,11 +39,5 @@ module SlickRubyGame
             return @levels
         end
 
-    end
-
-    # for testing only
-    def self.start
-        game_container = AppGameContainer.new(MainGameLoop.new("Simple Game"))
-        game_container.start
     end
 end
