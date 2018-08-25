@@ -23,10 +23,18 @@ describe SlickRubyGame::MainGameLoop do
             @mock_level = double('level')
 
             allow(@mock_level).to receive(:parent=).with(@main_game)
+            allow(@mock_level).to receive(:identifier).and_return('level_one')
             expect(@mock_level).to receive(:init).with(@game_container)
+
             @main_game.add_level(@mock_level)
             
             @main_game.init(@game_container)
+        end
+
+        describe '#retrieve_level' do
+            it 'should return a level with its identifier' do
+                expect(@main_game.retrieve_level('level_one')).to be @mock_level
+            end
         end
 
         describe '#init' do
@@ -53,4 +61,68 @@ describe SlickRubyGame::MainGameLoop do
             end
         end
     end
+
+    context 'adding levels' do
+        before :each do
+            @main_game = SlickRubyGame::MainGameLoop.new('hello')
+            @level_one = double('level1')
+            @level_two = double('level2')
+
+            allow(@level_one).to receive(:parent=).with(@main_game)
+            allow(@level_one).to receive(:identifier).and_return('level_one')
+
+            allow(@level_two).to receive(:parent=).with(@main_game)
+            allow(@level_two).to receive(:identifier).and_return('level_two')
+        end
+
+        it 'should start with a nil current level' do
+            expect(@main_game.current_level).to be_nil
+        end
+
+        it 'should set the added level to the current level' do
+            @main_game.add_level(@level_one)
+
+            expect(@main_game.current_level).to be @level_one
+
+            @main_game.add_level(@level_two)
+
+            expect(@main_game.current_level).to be @level_one
+            expect(@main_game.retrieve_level('level_two')).to be @level_two
+        end
+
+        it 'should throw an error if level identifier already exists' do
+            @main_game.add_level(@level_one)
+            expect {
+                @main_game.add_level(@level_one)
+            }.to raise_error(RuntimeError)
+        end
+
+        describe '#retrieve_level' do
+            before 'retrieval' do
+                @main_game.add_level(@level_one)
+            end
+
+            it 'should return the level with the right id' do
+                level = @main_game.retrieve_level('level_one')
+
+                expect(level).to be @level_one
+            end
+            
+        end
+    end
+
+    context 'transitioning levels' do
+
+        it 'should set the current level to the new level' do
+        end
+
+        it 'should destroy the old level' do
+        end
+
+        it 'shoud show a loading screen?' do
+        end
+
+    end
+
+
 end

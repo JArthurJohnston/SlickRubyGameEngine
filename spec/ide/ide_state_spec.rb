@@ -1,9 +1,9 @@
-require_relative '../../lib/ide/ide_state'
+require_relative '../../lib/ide/state/ide_state'
 
 describe 'ide state' do
 
     before :each do
-        @subject = SlickRubyGame::IDE::IDEState.new
+        @subject = SlickRubyGame::IDE::State::IDEState.new
     end
 
     it 'should create a default game' do

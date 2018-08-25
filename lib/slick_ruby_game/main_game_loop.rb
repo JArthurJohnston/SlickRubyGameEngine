@@ -13,12 +13,11 @@ module SlickRubyGame
 
         def initialize(title)
           super(title)
-            @levels = []
+            @levels = {}
             @identifier = title
         end
 
         def init(game_container)
-            @current_level= @levels.first
             @current_level.init(game_container)
         end
 
@@ -31,12 +30,22 @@ module SlickRubyGame
         end
 
         def add_level(game_object)
-            @levels.push(game_object)
+            unless @levels[game_object.identifier].nil?
+                raise 'A level with the identifier ' + game_object.identifier + ' already exitsts'
+            end
+            @levels.store(game_object.identifier, game_object)
             game_object.parent = self
+            if @current_level.nil?
+                @current_level = game_object
+            end
         end
 
         def game_objects
             return @levels
+        end
+
+        def retrieve_level(level_name)
+            return @levels[level_name]
         end
 
     end
