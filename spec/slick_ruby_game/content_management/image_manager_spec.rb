@@ -42,9 +42,39 @@ describe 'Image Manager' do
     end
 
     describe '#retrieve_sprite_sheet' do
+        before :each do
+            @mock_sprite = double('sprite-sheet')
+            allow(@mock_factory).to receive(:load_sprite).and_return(@mock_sprite)
+        end
+
+        it 'should return a sprite sheet' do
+            spritesheet = @image_manager.retrieve_sprite('some/sprite', 10, 11)
+
+            expect(spritesheet).to be @mock_sprite
+        end
+
+        it 'should store spritesheet in its map' do
+            spritesheet = @image_manager.retrieve_sprite('some/sprite', 10, 11)
+
+            expect(@image_manager.images['some/sprite']).to be spritesheet
+
+        end
     end
 
     describe '#clear' do
+
+        before :each do
+            file_name = 'some/file'
+            @stored_image = double('stored image')
+            @image_manager.images[file_name] = @stored_image
+
+        end
+
+        it 'should destroy the image' do
+            expect(@stored_image).to receive(:destroy)
+            @image_manager.clear('some/file')
+        end
+
     end
-    
+
 end
