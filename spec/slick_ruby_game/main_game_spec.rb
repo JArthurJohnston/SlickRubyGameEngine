@@ -41,6 +41,10 @@ describe SlickRubyGame::MainGameLoop do
             it 'should set its first level as its current level' do
                 expect(@main_game.current_level).to be(@mock_level)
             end
+
+            it 'should save the game container' do
+                expect(@main_game.game_container).to be @game_container
+            end
         end
 
         describe '#render' do
