@@ -112,14 +112,34 @@ describe SlickRubyGame::MainGameLoop do
     end
 
     context 'transitioning levels' do
+        before :each do
+            @main_game = SlickRubyGame::MainGameLoop.new('hello')
+            @level_one = double('level1')
+            @level_two = double('level2')
+
+            allow(@level_one).to receive(:parent=).with(@main_game)
+            allow(@level_one).to receive(:identifier).and_return('level_one')
+
+            allow(@level_two).to receive(:parent=).with(@main_game)
+            allow(@level_two).to receive(:identifier).and_return('level_two')
+
+            @main_game.add_level(@level_one)
+            @main_game.add_level(@level_two)
+        end
 
         it 'should set the current level to the new level' do
+            @main_game.transition_to('level_two')
+
+            expect(@main_game.current_level).to be @level_two
+        end
+
+        it 'should throw an error if the level does not exist' do
+            expect {
+                @main_game.transition_to('sdlkjdfldsfjfs')
+            }.to raise_error RuntimeError
         end
 
         it 'should destroy the old level' do
-        end
-
-        it 'shoud show a loading screen?' do
         end
 
     end

@@ -11,13 +11,19 @@ module SlickRubyGame
                     :identifier, 
                     :current_level
 
+        def self.instance
+            return @@instance
+        end
+
         def initialize(title)
-          super(title)
+            super(title)
             @levels = {}
             @identifier = title
+            @@instance = self
         end
 
         def init(game_container)
+            @game_container = game_container
             @current_level.init(game_container)
         end
 
@@ -46,6 +52,15 @@ module SlickRubyGame
 
         def retrieve_level(level_name)
             return @levels[level_name]
+        end
+
+        def transition_to(level_name)
+            next_level = retrieve_level(level_name)
+            if next_level.nil?
+                raise 'there is no level with the identifier: ' + level_name
+            end
+            next_level.init(@game_container)
+            @current_level = next_level
         end
 
     end
