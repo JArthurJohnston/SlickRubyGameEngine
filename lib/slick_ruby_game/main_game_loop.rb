@@ -59,6 +59,7 @@ module SlickRubyGame
             if next_level.nil?
                 raise 'there is no level with the identifier: ' + level_name
             end
+            @current_level.close
             next_level.init(@game_container)
             @current_level = next_level
         end

@@ -20,6 +20,11 @@ module SlickRubyGame::Colliders
             end
         end
 
+        def close
+            super
+            CollisionHandler.instance.remove_collider(self)
+        end
+
         def handle_collision
             # Stub method, meant to be overridden
         end

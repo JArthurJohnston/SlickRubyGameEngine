@@ -15,6 +15,11 @@ module SlickRubyGame
     def render(graphics_container, graphics)
       @image.draw(offset_x, offset_y)
     end
+
+    def close
+      super
+      @image.destroy
+    end
   
   end
 end

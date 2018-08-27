@@ -65,6 +65,7 @@ bounding_llama_1.offset_x = 1200
 bounding_llama_1.offset_y = 600
 bounding_llama_1.animation_speed = 100
 bounding_llama_1.movement_speed = 0.2
+bounding_llama_1.identifier= 'llama 1'
 
 llama_collider_1 = SlickRubyGame::Colliders::PhysicalRectangleCollider.new
 llama_collider_1.width = 10
@@ -90,12 +91,14 @@ bounding_llama_2.offset_x = 1200
 bounding_llama_2.offset_y = 600
 bounding_llama_2.animation_speed = 100
 bounding_llama_2.movement_speed = 0.2
+bounding_llama_2.identifier= 'llama 2'
 
 llama_collider_2 = SlickRubyGame::Colliders::PhysicalRectangleCollider.new
 llama_collider_2.width = 10
 llama_collider_2.height = 10
 llama_collider_2.offset_x = 54
 llama_collider_2.offset_y = 100
+llama_collider_2.identifier = 'llama collider 2'
 
 movement_handler_2 = SpriteMovementHandler.new
 bounding_llama_2.add_game_object(movement_handler_2)

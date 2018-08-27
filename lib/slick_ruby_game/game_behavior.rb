@@ -33,6 +33,13 @@ module SlickRubyGame
             each_game_object.render(game_container, graphics)
           end
         end
+
+        def close
+          game_objects.each do
+            |each_game_object|
+              each_game_object.close
+          end
+        end
     
         def add_game_object(game_object)
           game_objects.push(game_object)
