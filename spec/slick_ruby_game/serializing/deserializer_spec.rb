@@ -1,5 +1,23 @@
 require_relative '../../../lib/slick_ruby_game/serializing/deserializer'
 
+module SerializingTestHelper
+    def check_child_object(game_object)
+        expect(game_object.class).to be SlickRubyGame::GameObject
+        expect(game_object.instance_variable_get(:@width)).to       match 44
+        expect(game_object.instance_variable_get(:@height)).to      match 55
+        expect(game_object.instance_variable_get(:@offset_x)).to    match 5
+        expect(game_object.instance_variable_get(:@offset_y)).to    match 7
+        expect(game_object.instance_variable_get(:@scale_x)).to     match 2
+        expect(game_object.instance_variable_get(:@scale_y)).to     match 2
+        expect(game_object.instance_variable_get(:@identifier)).to  match 'little-lamb'
+        expect(game_object.game_objects).to be_empty
+    end
+end
+
+RSpec.configure do |c|
+    c.include SerializingTestHelper
+end
+
 describe SlickRubyGame::Serializing::Deserializer do
 
     before :each do 
@@ -10,8 +28,23 @@ describe SlickRubyGame::Serializing::Deserializer do
 
     it 'should return a game object from json' do
         game_object = @deserializer.game_object_from(@expected_child_json)
+        check_child_object(game_object)
+    end
+
+    it 'should return a game object and sub game objects from json' do
+        game_object = @deserializer.game_object_from(@expected_json)
 
         expect(game_object.class).to be SlickRubyGame::GameObject
+        expect(game_object.instance_variable_get(:@width)).to       match 89
+        expect(game_object.instance_variable_get(:@height)).to      match 65
+        expect(game_object.instance_variable_get(:@offset_x)).to    match 11
+        expect(game_object.instance_variable_get(:@offset_y)).to    match 22
+        expect(game_object.instance_variable_get(:@scale_x)).to     match 1
+        expect(game_object.instance_variable_get(:@scale_y)).to     match 1
+        expect(game_object.instance_variable_get(:@identifier)).to  match 'mary'
+        expect(game_object.game_objects.size).to match 1
+
+        check_child_object(game_object.game_objects.first)
     end
     
 end
