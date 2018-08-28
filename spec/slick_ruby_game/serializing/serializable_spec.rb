@@ -39,5 +39,4 @@ describe SlickRubyGame::Serializing::Serializable do
             expect(@child_object.as_json).to match @expected_child_json
         end
     end
-
 end

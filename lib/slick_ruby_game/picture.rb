@@ -7,6 +7,10 @@ java_import org.newdawn.slick.Image
 module SlickRubyGame
   class Picture < GameObject
     attr_accessor :image_location
+
+    def excluded_variables
+      return super.push(:@image)
+    end
   
     def init(graphics_container)
       @image = Image.new(image_location)

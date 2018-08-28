@@ -3,7 +3,10 @@ require 'json'
 module SlickRubyGame
     module Serializing
         module Serializable
-            @@excluded_variables = [:@parent, :@game_objects]
+
+            def excluded_variables
+                return [:@parent, :@game_objects]
+            end
 
             def as_json
                 return self.variable_map.to_json
@@ -14,7 +17,7 @@ module SlickRubyGame
                 variables[:object_class] = self.class.name
                 self.instance_variables.each do
                     |each_var_name|
-                    unless @@excluded_variables.include?(each_var_name)
+                    unless self.excluded_variables.include?(each_var_name)
                         variables[each_var_name] = self.instance_variable_get(each_var_name)
                     end
                 end

@@ -24,7 +24,7 @@ game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 
 load_workshop_collider = LoadingCollider.new(650, 1000, 1900, 1000)
 load_workshop_collider.level_name='workshop'
-load_train_collider = LoadingCollider.new(0, 1050, 1920, 1050)
+load_train_collider = LoadingCollider.new(0, 1020, 1920, 1020)
 load_train_collider.level_name = 'train'
 
 train_level = SlickRubyGame::Level.new
@@ -47,6 +47,7 @@ workshop_background = SlickRubyGame::Picture.new
 workshop_background.image_location = './res/GFV_workshop_HD.jpg'
 workshop_level.add_game_object(workshop_background)
 workshop_level.identifier= 'workshop'
+workshop_level.add_game_object(load_train_collider)
 
 camera_perspective = SlickRubyGame::AreaCameraPerspective.new
 camera_perspective.top_percentage_at(0.1, 600)

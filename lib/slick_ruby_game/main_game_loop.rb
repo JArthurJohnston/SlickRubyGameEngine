@@ -9,7 +9,8 @@ module SlickRubyGame
     class MainGameLoop < BasicGame
         attr_accessor :levels, 
                     :identifier, 
-                    :current_level
+                    :current_level,
+                    :can_update
 
         def self.instance
             return @@instance
@@ -17,6 +18,7 @@ module SlickRubyGame
 
         def initialize(title)
             super(title)
+            @can_update = true
             @levels = {}
             @identifier = title
             @@instance = self
@@ -28,7 +30,9 @@ module SlickRubyGame
         end
 
         def update(game_container, delta)
-            @current_level.update(game_container, delta)
+            if(@can_update)
+                @current_level.update(game_container, delta)
+            end
         end
         
         def render(game_container, graphics)
@@ -55,6 +59,7 @@ module SlickRubyGame
         end
 
         def transition_to(level_name)
+            @can_update = false
             next_level = retrieve_level(level_name)
             if next_level.nil?
                 raise 'there is no level with the identifier: ' + level_name
@@ -62,6 +67,7 @@ module SlickRubyGame
             @current_level.close
             next_level.init(@game_container)
             @current_level = next_level
+            @can_update = true
         end
 
     end

@@ -30,4 +30,23 @@ describe SlickRubyGame::Picture do
             @picture.render(nil, nil)
         end
     end
+
+    context 'serializing' do
+        before :each do
+            @picture.identifier = 'test-picture'
+            @picture.offset_x = 5
+            @picture.offset_y = 6
+            @picture.scale_x = 2
+            @picture.scale_y = 3
+            @picture.width = 10
+            @picture.height = 11
+            @picture.image_location = '../res/test.png'
+        end
+
+        it 'should make a json string' do
+            puts @picture.as_json
+            expect(@picture.as_json).to match('{"object_class":"SlickRubyGame::Picture","@height":11,"@offset_x":5,"@offset_y":6,"@scale_x":2,"@width":10,"@scale_y":3,"@image_location":"../res/test.png","@identifier":"test-picture","@game_objects":[]}')
+        end
+
+    end
 end
