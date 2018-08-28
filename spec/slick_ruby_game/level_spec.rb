@@ -11,7 +11,7 @@ describe SlickRubyGame::Level do
   describe 'default values' do
 
     it 'should have default layers' do
-      expect(@level.layers.size).to be 1
+      expect(@level.layers.size).to match 1
       expect(@level.layers.first.identifier).to match 'Default'
       expect(@level.layers.first.parent).to be @level
 

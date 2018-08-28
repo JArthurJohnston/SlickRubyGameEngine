@@ -108,7 +108,7 @@ bounding_llama_2.add_game_object(llama_collider_2)
 
 workshop_level.add_game_object(bounding_llama_2)
 
-SlickRubyGame::Serializing::FileIO.save(train_level, './train_level.json')
-SlickRubyGame::Serializing::FileIO.save(workshop_level, './workshop_level.json')
+# SlickRubyGame::Serializing::FileIO.save(train_level, './train_level.json')
+# SlickRubyGame::Serializing::FileIO.save(workshop_level, './workshop_level.json')
 
 SRGE.start(game)

@@ -5,9 +5,7 @@ require_relative './serializing/serializable'
 require_relative './colliders/collision_handler'
 
 module SlickRubyGame
-    class Level
-        include GameBehavior
-        include SlickRubyGame::Serializing::Serializable
+    class Level < GameObject
         include Scalable
         attr_accessor :layers,
                         :current_layer,
@@ -15,8 +13,9 @@ module SlickRubyGame
                         :height
 
         def initialize
+            super
             @current_layer = build_default_layer
-            @layers = [@current_layer]
+            @game_objects.push(@current_layer)
         end
 
         def build_default_layer
@@ -31,25 +30,33 @@ module SlickRubyGame
             Colliders::CollisionHandler.instance.process_collisions
         end
 
-        def game_objects
-            return @layers
-        end
-
         def add_game_object(game_object)
             @current_layer.add_game_object(game_object)
         end
 
         def add_layer(layer)
-            @layers.push(layer)
+            @game_objects.push(layer)
             layer.parent= self
         end
 
+        def layers
+            return @game_objects
+        end
+
         def scale_x
-            return 1
+            return @scale_x
         end
 
         def scale_y
-            return 1
+            return @scale_y
+        end
+
+        def offset_x
+            return @offset_x
+        end
+
+        def offset_y
+            return @offset_y
         end
 
         def width=(width)
