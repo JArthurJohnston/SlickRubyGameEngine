@@ -1,0 +1,89 @@
+{
+    "object_class": "SlickRubyGame::Level",
+    "@height": 1080,
+    "@offset_x": 0,
+    "@offset_y": 0,
+    "@current_layer": "#<SlickRubyGame::GameObject:0x2aa5fe93>",
+    "@scale_x": 1,
+    "@width": 1920,
+    "@scale_y": 1,
+    "@identifier": "workshop",
+    "@game_objects": [
+      {
+        "object_class": "SlickRubyGame::GameObject",
+        "@offset_x": 0,
+        "@height": 1080,
+        "@offset_y": 0,
+        "@width": 1920,
+        "@scale_x": 1,
+        "@scale_y": 1,
+        "@identifier": "Default Layer",
+        "@game_objects": [
+          {
+            "object_class": "SlickRubyGame::Picture",
+            "@height": 0,
+            "@offset_x": 0,
+            "@offset_y": 0,
+            "@scale_x": 1,
+            "@width": 0,
+            "@scale_y": 1,
+            "@image_location": "./res/GFV_workshop_HD.jpg",
+            "@identifier": "",
+            "@game_objects": []
+          },
+          {
+            "object_class": "LoadingCollider",
+            "@offset_x": 0,
+            "@height": 0,
+            "@offset_y": 0,
+            "@width": 0,
+            "@scale_x": 1,
+            "@scale_y": 1,
+            "@level_name": "train",
+            "@shape": "[Line [Vector2f 0.0,1020.0 (1020.0)],[Vector2f 1920.0,1020.0 (2174.1206)]]",
+            "@identifier": "",
+            "@game_objects": []
+          },
+          {
+            "object_class": "SlickRubyGame::Sprite",
+            "@offset_x": 1200,
+            "@height": 128,
+            "@offset_y": 600,
+            "@movement_speed": 0.2,
+            "@spritesheet_location": "./res/llama.png",
+            "@animation_speed": 100,
+            "@width": 128,
+            "@scale_x": 1,
+            "@scale_y": 1,
+            "@sprite_width": 48,
+            "@identifier": "llama 2",
+            "@sprite_height": 48,
+            "@game_objects": [
+              {
+                "object_class": "SpriteMovementHandler",
+                "@height": 0,
+                "@offset_x": 0,
+                "@offset_y": 0,
+                "@scale_x": 1,
+                "@width": 0,
+                "@scale_y": 1,
+                "@identifier": "",
+                "@game_objects": []
+              },
+              {
+                "object_class": "SlickRubyGame::Colliders::PhysicalRectangleCollider",
+                "@offset_x": 54,
+                "@height": 10,
+                "@offset_y": 100,
+                "@width": 10,
+                "@scale_x": 1,
+                "@scale_y": 1,
+                "@identifier": "llama collider 2",
+                "@game_objects": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

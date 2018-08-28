@@ -13,11 +13,13 @@ module SlickRubyGame
     end
   
     def init(graphics_container)
+      super
       @image = Image.new(image_location)
     end
   
     def render(graphics_container, graphics)
-      @image.draw(offset_x, offset_y)
+      super
+      @image.draw(offset_x, offset_y, width, height)
     end
 
     def close
