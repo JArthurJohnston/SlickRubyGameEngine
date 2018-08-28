@@ -5,15 +5,6 @@ require 'srge/file_io'
 require_relative 'example_input'
 # require_relative 'example_train_level'
 
-class SlickRubyGame::Picture
-    
-    def render(graphics_container, graphics)
-        super
-        @image.draw(offset_x, offset_y, width, height)
-    end
-
-end
-
 class SlickRubyGame::Colliders::AbstractCollider
 
     def render(game_container, graphics)
@@ -31,6 +22,8 @@ class LoadingCollider < SlickRubyGame::Colliders::LineCollider
 end
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
+game.width= 1920
+game.height= 1080
 
 load_workshop_collider = LoadingCollider.new(650, 1000, 1900, 1000)
 load_workshop_collider.level_name='workshop'
