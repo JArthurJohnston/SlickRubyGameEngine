@@ -1,11 +1,13 @@
 require_relative 'game_behavior'
 require_relative 'game_object'
 require_relative 'scalable'
+require_relative './serializing/serializable'
 require_relative './colliders/collision_handler'
 
 module SlickRubyGame
     class Level
         include GameBehavior
+        include SlickRubyGame::Serializing::Serializable
         include Scalable
         attr_accessor :layers,
                         :current_layer,

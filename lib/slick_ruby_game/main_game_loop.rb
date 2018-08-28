@@ -11,6 +11,7 @@ module SlickRubyGame
                     :identifier, 
                     :current_level,
                     :can_update
+        attr_reader :game_container
 
         def self.instance
             return @@instance

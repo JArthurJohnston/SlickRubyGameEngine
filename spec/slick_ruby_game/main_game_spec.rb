@@ -121,9 +121,11 @@ describe SlickRubyGame::MainGameLoop do
             @level_one = double('level1')
             @level_two = double('level2')
 
+            allow(@level_one).to receive(:close)
             allow(@level_one).to receive(:parent=).with(@main_game)
             allow(@level_one).to receive(:identifier).and_return('level_one')
 
+            allow(@level_two).to receive(:init)
             allow(@level_two).to receive(:parent=).with(@main_game)
             allow(@level_two).to receive(:identifier).and_return('level_two')
 
@@ -142,10 +144,6 @@ describe SlickRubyGame::MainGameLoop do
                 @main_game.transition_to('sdlkjdfldsfjfs')
             }.to raise_error RuntimeError
         end
-
-        it 'should destroy the old level' do
-        end
-
     end
 
 
