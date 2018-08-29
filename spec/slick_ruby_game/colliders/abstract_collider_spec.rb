@@ -63,5 +63,43 @@ describe AbstractCollider do
             end
 
         end
+
+        context 'collision observers' do
+
+            before :each do
+                @observer = double('observing game object')
+            end
+
+            it 'should start with an empty list of observers' do
+                expect(@abstract_collider.collision_triggers).to be_empty
+                expect(@abstract_collider.finished_triggers).to be_empty
+            end
+
+            it 'should add observers to its list' do
+                @abstract_collider.on_collision_trigger(@observer, :do_something)
+
+                expect(@abstract_collider.collision_triggers.size).to match 1
+                stored_observer = @abstract_collider.collision_triggers.first
+
+                expect(stored_observer.game_object).to be @observer
+                expect(stored_observer.triggered_method).to be :do_something
+            end
+
+            it 'should call the triggerd method on collision' do
+                @abstract_collider.on_collision_trigger(@observer, :do_something)
+
+                expect(@observer).to receive(:do_something)
+
+                @abstract_collider.handle_collision
+            end
+
+            it 'should call the triggerd method on collision' do
+                @abstract_collider.on_finished_colliding(@observer, :do_something_else)
+
+                expect(@observer).to receive(:do_something_else)
+
+                @abstract_collider.finished_colliding
+            end
+        end
     end
 end

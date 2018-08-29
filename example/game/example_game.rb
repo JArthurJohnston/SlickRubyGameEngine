@@ -35,8 +35,8 @@ train_level.width = 1920
 train_level.height = 1080 #these should be handled at a higher place than the level
 train_background = SlickRubyGame::Picture.new
 train_background.image_location = './res/GFV_train_HD.jpg'
-train_background.width= 1920
-train_background.height= 1080
+train_background.width= game.width
+train_background.height= game.height
 train_level.add_game_object(train_background)
 train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1920, 1070))
 train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(449, 1071, 1225, 763))
@@ -50,8 +50,8 @@ workshop_level.width = 1920
 workshop_level.height = 1080 #these should be handled at a higher place than the level
 workshop_background = SlickRubyGame::Picture.new
 workshop_background.image_location = './res/GFV_workshop_HD.jpg'
-workshop_background.width= 1920
-workshop_background.height= 1080
+workshop_background.width= game.width
+workshop_background.height= game.height
 workshop_level.add_game_object(workshop_background)
 workshop_level.identifier= 'workshop'
 workshop_level.add_game_object(load_train_collider)
