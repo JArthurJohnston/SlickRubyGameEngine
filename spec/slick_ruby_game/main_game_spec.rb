@@ -14,6 +14,10 @@ describe SlickRubyGame::MainGameLoop do
         it 'should have the identifier passed to it' do
             expect(@main_game.identifier).to match 'Hello'
         end
+
+        it 'should be accessable globally' do
+            expect(SlickRubyGame::MainGameLoop.instance).to be @main_game
+        end
     end
 
     context '#current_level' do

@@ -75,11 +75,21 @@ describe AbstractCollider do
                 expect(@abstract_collider.finished_triggers).to be_empty
             end
 
-            it 'should add observers to its list' do
+            it 'should add collision triggers to its list' do
                 @abstract_collider.on_collision_trigger(@observer, :do_something)
 
                 expect(@abstract_collider.collision_triggers.size).to match 1
                 stored_observer = @abstract_collider.collision_triggers.first
+
+                expect(stored_observer.game_object).to be @observer
+                expect(stored_observer.triggered_method).to be :do_something
+            end
+
+            it 'should add finished triggers to its list' do
+                @abstract_collider.on_finished_colliding(@observer, :do_something)
+
+                expect(@abstract_collider.finished_triggers.size).to match 1
+                stored_observer = @abstract_collider.finished_triggers.first
 
                 expect(stored_observer.game_object).to be @observer
                 expect(stored_observer.triggered_method).to be :do_something

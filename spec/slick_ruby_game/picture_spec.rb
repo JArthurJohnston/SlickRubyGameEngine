@@ -20,12 +20,16 @@ describe SlickRubyGame::Picture do
         before 'drawing the image' do
             @expected_x = 4423
             @expected_y = 9786
+            @expected_height = 2423
+            @expected_width = 86766
             @picture.offset_x = @expected_x
             @picture.offset_y = @expected_y
+            @picture.width = @expected_width
+            @picture.height = @expected_height
         end
 
         it 'should draw the image' do
-            expect(@image_double).to receive(:draw).with(@expected_x, @expected_y)
+            expect(@image_double).to receive(:draw).with(@expected_x, @expected_y, @expected_width, @expected_height)
 
             @picture.render(nil, nil)
         end
