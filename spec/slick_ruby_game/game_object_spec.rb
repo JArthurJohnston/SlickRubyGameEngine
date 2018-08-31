@@ -122,6 +122,10 @@ module SlickRubyGame
                     expect(@game_object1.parent).to be nil
                     expect(@game_object2.parent).to be @game_object1
                 end
+
+                it 'should thrown an error for duplicate game object ids' do
+                    fail
+                end
             end
 
             describe '#game_objects=' do

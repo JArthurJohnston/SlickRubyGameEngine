@@ -10,7 +10,9 @@ module SlickRubyGame
         attr_accessor :levels, 
                     :identifier, 
                     :current_level,
-                    :can_update
+                    :can_update,
+                    :width,
+                    :height
         attr_reader :game_container
 
         def self.instance

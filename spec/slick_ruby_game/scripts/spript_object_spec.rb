@@ -24,6 +24,10 @@ describe 'Script Objects' do
             expect(@script_object.script.game_container).to be @game_container
         end
 
+        it 'should set its parents to the scripts parent' do
+            fail
+        end
+
     end
 
 

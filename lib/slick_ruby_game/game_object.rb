@@ -40,12 +40,12 @@ module SlickRubyGame
       return parent.level
     end
 
-    def identifier
-      return parent.identifier + '.' + super
+    def fully_qualified_identifier
+      return parent.identifier + '.' + base_identifier
     end
 
     def find(object_identifier)
-      if(self.identifier == object_identifier)
+      if(self.fully_qualified_identifier == object_identifier)
         return self
       end
       game_objects.each do
