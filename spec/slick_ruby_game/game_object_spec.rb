@@ -5,13 +5,30 @@ module SlickRubyGame
     describe GameObject do
 
         before 'each' do
+            @level = double('level')
             @parent = double('parent-game-object')
             allow(@parent).to receive(:offset_x).and_return(0)
             allow(@parent).to receive(:offset_y).and_return(0)
             allow(@parent).to receive(:scale_x).and_return(1)
             allow(@parent).to receive(:scale_y).and_return(1)
+            allow(@parent).to receive(:level).and_return(@level)
+            allow(@parent).to receive(:identifier).and_return('parent-object')
             @game_object = GameObject.new
             @game_object.parent= @parent
+            @game_object.identifier = 'cool-game-object'
+        end
+
+        it 'should return its parents level' do
+            expect(@game_object.level).to be @level
+        end
+
+        it 'should return an identifier with its parent id' do
+            expect(@game_object.identifier).to match 'parent-object.cool-game-object'
+        end
+
+        it 'should return its class as the identifier with its parent id' do
+            @game_object.identifier = nil
+            expect(@game_object.identifier).to match 'parent-object.SlickRubyGame::GameObject'
         end
 
         context 'default values' do
@@ -144,6 +161,37 @@ module SlickRubyGame
                     expect(@game_object.offset_y).to be_within(0.01).of 18.9
                 end
 
+            end
+
+            describe '#find' do
+                before :each do
+                    @sub1 = GameObject.new
+                    @sub1.identifier = 'sub-one'
+
+                    @sub2 = GameObject.new
+                    @sub2.identifier = 'sub-two'
+
+                    @sub3 = GameObject.new
+                    @sub3.identifier = 'sub-three'
+
+                    @sub1.add_game_object(@sub2)
+                    @game_object.add_game_object(@sub1)
+                    @game_object.add_game_object(@sub3)
+                end
+
+                it 'should find sub game objects with their identifiers' do
+                    found1 = @game_object.find('parent-object.cool-game-object.sub-one')
+                    found2 = @game_object.find('parent-object.cool-game-object.sub-one.sub-two')
+                    found3 = @game_object.find('parent-object.cool-game-object.sub-three')
+
+                    expect(found1).to be @sub1
+                    expect(found2).to be @sub2
+                    expect(found3).to be @sub3
+                end
+
+                it 'should return nil when not found' do
+                    expect(@game_object.find('non-existent')).to be_nil
+                end
             end
         end
     end

@@ -68,5 +68,9 @@ describe SlickRubyGame::Level do
 
       @level.update(nil, nil)
     end
+
+    it 'should return itself for its level' do
+      expect(@level.level).to be @level
+    end
   end
 end

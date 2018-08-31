@@ -69,5 +69,9 @@ module SlickRubyGame
             @current_layer.height = height
         end
 
+        def level
+            return self
+        end
+
     end
 end
