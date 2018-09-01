@@ -45,6 +45,11 @@ train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1919, 795
 train_level.add_game_object(load_workshop_collider)
 train_level.identifier= 'train'
 
+workshop_level_loader = SlickRubyGame::Scripts::ScriptObject.new
+workshop_level_loader.module_name= 'LevelLoader'
+workshop_level_loader.file_path='./scripts/level_loader.rb'
+# train_level.add_game_object(level_loader)
+
 workshop_level = SlickRubyGame::Level.new
 workshop_level.width = 1920
 workshop_level.height = 1080 #these should be handled at a higher place than the level

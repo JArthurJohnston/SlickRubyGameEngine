@@ -1,7 +1,8 @@
 
 class TestScript < SlickRubyGame::Scripts::GameScript
     attr_accessor :init_called, :update_called, :render_called,
-                :game_container, :graphics, :delta
+                :game_container, :graphics, :delta,
+                :test_value_one, :test_value_two
 
     def initialize
         @init_called=false
