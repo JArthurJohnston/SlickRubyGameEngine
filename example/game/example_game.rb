@@ -48,7 +48,8 @@ train_level.identifier= 'train'
 workshop_level_loader = SlickRubyGame::Scripts::ScriptObject.new
 workshop_level_loader.module_name= 'LevelLoader'
 workshop_level_loader.file_path='./scripts/level_loader.rb'
-# train_level.add_game_object(level_loader)
+workshop_level_loader.variables = {'@level_name': 'workshop'}
+train_level.add_game_object(level_loader)
 
 workshop_level = SlickRubyGame::Level.new
 workshop_level.width = 1920
@@ -60,6 +61,13 @@ workshop_background.height= game.height
 workshop_level.add_game_object(workshop_background)
 workshop_level.identifier= 'workshop'
 workshop_level.add_game_object(load_train_collider)
+
+train_level_loader = SlickRubyGame::Scripts::ScriptObject.new
+train_level_loader.module_name= 'LevelLoader'
+train_level_loader.file_path='./scripts/level_loader.rb'
+train_level_loader.variables = {'@level_name': 'train'}
+
+workshop_level.add_game_object(train_level_loader)
 
 camera_perspective = SlickRubyGame::AreaCameraPerspective.new
 camera_perspective.top_percentage_at(0.1, 600)

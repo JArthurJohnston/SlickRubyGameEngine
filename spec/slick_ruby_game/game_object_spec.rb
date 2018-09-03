@@ -13,6 +13,7 @@ module SlickRubyGame
             allow(@parent).to receive(:scale_y).and_return(1)
             allow(@parent).to receive(:level).and_return(@level)
             allow(@parent).to receive(:identifier).and_return('parent-object')
+            allow(@parent).to receive(:fully_qualified_identifier).and_return('parent-object')
             @game_object = GameObject.new
             @game_object.parent= @parent
             @game_object.identifier = 'cool-game-object'
@@ -22,13 +23,17 @@ module SlickRubyGame
             expect(@game_object.level).to be @level
         end
 
-        it 'should return an identifier with its parent id' do
-            expect(@game_object.identifier).to match 'parent-object.cool-game-object'
+        it 'should have an identifier' do
+            expect(@game_object.identifier).to match 'cool-game-object'
+        end
+
+        it 'should return a fully qualified identifier with its parent id' do
+            expect(@game_object.fully_qualified_identifier).to match 'parent-object.cool-game-object'
         end
 
         it 'should return its class as the identifier with its parent id' do
             @game_object.identifier = nil
-            expect(@game_object.identifier).to match 'parent-object.SlickRubyGame::GameObject'
+            expect(@game_object.identifier).to match 'SlickRubyGame::GameObject'
         end
 
         context 'default values' do

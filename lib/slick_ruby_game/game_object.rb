@@ -7,8 +7,7 @@ module SlickRubyGame
     include GameBehavior
     include Scalable
     include Serializing::Serializable
-    attr_reader :game_objects,
-                :identifier
+    attr_reader :game_objects
     attr_accessor :offset_x,
                   :offset_y
 
@@ -41,7 +40,7 @@ module SlickRubyGame
     end
 
     def fully_qualified_identifier
-      return parent.identifier + '.' + base_identifier
+      return parent.fully_qualified_identifier + '.' + identifier
     end
 
     def find(object_identifier)
