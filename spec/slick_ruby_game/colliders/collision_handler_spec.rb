@@ -1,11 +1,9 @@
 require_relative '../../../lib/slick_ruby_game/colliders/collision_handler'
 
-CollisionHandler = SlickRubyGame::Colliders::CollisionHandler
-
 describe 'Collision Handler' do
 
     before 'each' do
-        @handler = CollisionHandler.instance
+        @handler = SlickRubyGame::Colliders::CollisionHandler.instance
 
         @collider1 = double('collider1')
         @collider2 = double('collider2')
@@ -17,11 +15,11 @@ describe 'Collision Handler' do
     end
 
     after :each do
-        CollisionHandler.instance.instance_variable_set(:@colliders, [])
+        SlickRubyGame::Colliders::CollisionHandler.instance.instance_variable_set(:@colliders, [])
     end
 
     it 'should be a singleton' do
-        expect(@handler).to be CollisionHandler.instance
+        expect(@handler).to be SlickRubyGame::Colliders::CollisionHandler.instance
     end
 
     it 'should process collisions' do
