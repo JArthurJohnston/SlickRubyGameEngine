@@ -13,22 +13,22 @@ class SlickRubyGame::Colliders::AbstractCollider
     end
 end
 
-class LoadingCollider < SlickRubyGame::Colliders::LineCollider
-    attr_accessor :level_name
+# class LoadingCollider < SlickRubyGame::Colliders::LineCollider
+#     attr_accessor :level_name
 
-    def handle_collision
-        SlickRubyGame::MainGameLoop.instance.transition_to(@level_name)
-    end
-end
+#     def handle_collision
+#         SlickRubyGame::MainGameLoop.instance.transition_to(@level_name)
+#     end
+# end
 
 game = SlickRubyGame::MainGameLoop.new('A Day at the Station')
 game.width= 1920
 game.height= 1080
 
-load_workshop_collider = LoadingCollider.new(650, 1000, 1900, 1000)
-load_workshop_collider.level_name='workshop'
-load_train_collider = LoadingCollider.new(0, 1020, 1920, 1020)
-load_train_collider.level_name = 'train'
+# load_workshop_collider = LoadingCollider.new(650, 1000, 1900, 1000)
+# load_workshop_collider.level_name='workshop'
+# load_train_collider = LoadingCollider.new(0, 1020, 1920, 1020)
+# load_train_collider.level_name = 'train'
 
 train_level = SlickRubyGame::Level.new
 train_level.width = 1920
@@ -38,18 +38,21 @@ train_background.image_location = './res/GFV_train_HD.jpg'
 train_background.width= game.width
 train_background.height= game.height
 train_level.add_game_object(train_background)
-train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(448, 1070, 1920, 1070))
+train_bottom_collider = SlickRubyGame::Colliders::LineCollider.new(650, 1010, 1860, 1010)
+train_level.add_game_object(train_bottom_collider)
 train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(449, 1071, 1225, 763))
 train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1226, 764, 1920, 794))
 train_level.add_game_object(SlickRubyGame::Colliders::LineCollider.new(1919, 795, 1919, 1071))
-train_level.add_game_object(load_workshop_collider)
+# train_level.add_game_object(load_workshop_collider)
 train_level.identifier= 'train'
 
 workshop_level_loader = SlickRubyGame::Scripts::ScriptObject.new
 workshop_level_loader.module_name= 'LevelLoader'
 workshop_level_loader.file_path='./scripts/level_loader.rb'
 workshop_level_loader.variables = {'@level_name': 'workshop'}
-train_level.add_game_object(level_loader)
+train_level.add_game_object(workshop_level_loader)
+
+train_bottom_collider.on_collision_trigger(workshop_level_loader.script, :load_level)
 
 workshop_level = SlickRubyGame::Level.new
 workshop_level.width = 1920
@@ -60,14 +63,17 @@ workshop_background.width= game.width
 workshop_background.height= game.height
 workshop_level.add_game_object(workshop_background)
 workshop_level.identifier= 'workshop'
-workshop_level.add_game_object(load_train_collider)
+# workshop_level.add_game_object(load_train_collider)
+workshop_bottom_collider = SlickRubyGame::Colliders::LineCollider.new(0, 1010, 1920, 1010)
+workshop_level.add_game_object(workshop_bottom_collider)
 
 train_level_loader = SlickRubyGame::Scripts::ScriptObject.new
 train_level_loader.module_name= 'LevelLoader'
 train_level_loader.file_path='./scripts/level_loader.rb'
 train_level_loader.variables = {'@level_name': 'train'}
-
 workshop_level.add_game_object(train_level_loader)
+
+workshop_bottom_collider.on_collision_trigger(train_level_loader.script, :load_level)
 
 camera_perspective = SlickRubyGame::AreaCameraPerspective.new
 camera_perspective.top_percentage_at(0.1, 600)
