@@ -9,7 +9,7 @@ module SlickRubyGame
 
             def init(game_container)
                 super
-                @script.init(game_container)
+                script.init(game_container)
             end
 
             def script
