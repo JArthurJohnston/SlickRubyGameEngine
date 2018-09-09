@@ -10,6 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["joe.a.johnston@gmail.com"]
   spec.platform      = 'java'
   spec.summary       = 'A library for creating games using ruby'
+  spec.licenses      = ['MIT']
+  spec.homepage      = 'https://github.com/JArthurJohnston/SlickRubyGameEngine'
 
   spec.require_paths = ["lib"]
   spec.files         = Dir.glob("{bin,lib}/**/*")
