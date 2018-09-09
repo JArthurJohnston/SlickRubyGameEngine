@@ -1,1 +1,1 @@
-{"object_class":"SlickRubyGame::GameObject","@height":65,"@offset_x":11,"@offset_y":22,"@scale_x":1,"@width":89,"@scale_y":1,"@identifier":"mary","@game_objects":[]}
+{"object_class":"SlickRubyGame::GameObject","@height":65,"@offset_x":11,"@offset_y":22,"@scale_x":1,"@width":89,"@scale_y":1,"@min_height":1.0,"@min_width":1.0,"@identifier":"mary","@game_objects":[]}

@@ -18,6 +18,13 @@ describe AbstractCollider do
         CollisionHandler.instance.instance_variable_set(:@colliders, [])
     end
 
+    describe '#initialize' do
+        it 'should have empty trigger lists' do
+            expect(@abstract_collider.collision_triggers).to be_empty
+            expect(@abstract_collider.finished_triggers).to be_empty
+        end
+    end
+
     describe '#collides_with?' do
         context 'has a shape that overlaps another colliders shape' do
 
