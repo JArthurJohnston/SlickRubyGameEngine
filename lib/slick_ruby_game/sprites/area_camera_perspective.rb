@@ -11,6 +11,10 @@ module SlickRubyGame
             end
         end
 
+        def scale_value_for(offset_y)
+            return @top_percentage + ((offset_y - @top) * scale_delta)
+        end
+
         def top_percentage_at(percentage, position)
             @top_percentage = percentage
             @top = position

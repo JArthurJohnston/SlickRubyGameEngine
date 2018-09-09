@@ -17,10 +17,14 @@ module SlickRubyGame
             end
         end
 
+        def scale_value_for(offset_y)
+            return offset_y * scale_delta
+        end
+
         def update_scales_for(game_object)
-            scale_value = game_object.offset_y * scale_delta
-            game_object.scale_x = scale_value
-            game_object.scale_y = scale_value
+            scale = self.scale_value_for(game_object.offset_y)
+            game_object.scale_x = scale
+            game_object.scale_y = scale
             # This only works if the scales are equal. 
         end
         
