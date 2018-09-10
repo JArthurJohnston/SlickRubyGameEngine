@@ -48,7 +48,8 @@ describe SlickRubyGame::Picture do
         end
 
         it 'should make a json string' do
-            expect(@picture.as_json).to match('{"object_class":"SlickRubyGame::Picture","@height":11,"@offset_x":5,"@offset_y":6,"@scale_x":2,"@width":10,"@scale_y":3,"@image_location":"../res/test.png","@identifier":"test-picture","@game_objects":[]}')
+            expected_json = '{"object_class":"SlickRubyGame::Picture","@height":11,"@offset_x":5,"@offset_y":6,"@image_location":"../res/test.png","@scale_x":2,"@width":10,"@scale_y":3,"@min_height":1.0,"@min_width":1.0,"@identifier":"test-picture","@game_objects":[]}'            
+            expect(@picture.as_json).to match expected_json
         end
 
     end

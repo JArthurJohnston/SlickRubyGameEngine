@@ -23,8 +23,8 @@ describe SlickRubyGame::Serializing::Serializable do
         @child_object.identifier = 'little-lamb'
 
         @game_object.add_game_object(@child_object)
-        @expected_child_json = '{"object_class":"SlickRubyGame::GameObject","@height":55,"@offset_x":5,"@offset_y":7,"@scale_x":2,"@width":44,"@scale_y":2,"@identifier":"little-lamb","@game_objects":[]}'
-        @expected_json = '{"object_class":"SlickRubyGame::GameObject","@height":65,"@offset_x":11,"@offset_y":22,"@scale_x":1,"@width":89,"@scale_y":1,"@identifier":"mary","@game_objects":[' + @expected_child_json + ']}'
+        @expected_child_json = '{"object_class":"SlickRubyGame::GameObject","@height":55,"@offset_x":5,"@offset_y":7,"@scale_x":2,"@width":44,"@scale_y":2,"@min_height":1.0,"@min_width":1.0,"@identifier":"little-lamb","@game_objects":[]}'
+        @expected_json = '{"object_class":"SlickRubyGame::GameObject","@height":65,"@offset_x":11,"@offset_y":22,"@scale_x":1,"@width":89,"@scale_y":1,"@min_height":1.0,"@min_width":1.0,"@identifier":"mary","@game_objects":[' + @expected_child_json + ']}'
     end
 
     context 'serializing to json' do
