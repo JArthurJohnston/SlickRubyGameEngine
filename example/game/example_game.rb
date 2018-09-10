@@ -76,8 +76,8 @@ workshop_level.add_game_object(train_level_loader)
 workshop_bottom_collider.on_collision_trigger(train_level_loader.script, :load_level)
 
 camera_perspective = SlickRubyGame::AreaCameraPerspective.new
-camera_perspective.top_percentage_at(0.1, 600)
-camera_perspective.bottom_percentage_at(2, 1080)
+camera_perspective.top_percentage_at(0.3, 600)
+camera_perspective.bottom_percentage_at(3, 1080)
 
 game.add_level(train_level)
 game.add_level(workshop_level)
