@@ -1,5 +1,6 @@
 include Java
 
+require_relative './menu/main_menu'
 require_relative '../../slick_ruby_game/include_slick'
 require_relative '../../slick_ruby_game/main_game_loop'
 require_relative 'game_tree_panel'
@@ -29,12 +30,7 @@ module SlickRubyGame
                 end
             
                 def init_menu
-                    menu_bar = JMenuBar.new
-                    file_menu = JMenu.new('File')
-                    add_level_item = JMenuItem.new('Add Level')
-            
-                    file_menu.add(add_level_item)
-                    menu_bar.add(file_menu)
+                    menu_bar = MainMenu.new
                     self.set_jmenu_bar(menu_bar)
                 end
             

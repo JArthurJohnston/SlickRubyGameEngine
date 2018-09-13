@@ -1,6 +1,8 @@
 include Java
 
 require_relative '../../include_ui'
+require_relative '../../commands/add_level_command'
+require_relative '../../commands/block_action_listener'
 
 java_import javax.swing.JMenuBar,
             javax.swing.JMenu,
@@ -12,21 +14,6 @@ java_import javax.swing.JMenuBar,
 module SlickRubyGame
     module IDE
         module UI
-            class MenuAction < AbstractAction
-
-                def initialize(name, description, accelerator_key, command)
-                    super(name, nil)
-                    @command = command
-                    action.put_value(Action::SHORT_DESCRIPTION, description)
-                    action.put_value(Action::MNEMONIC_KEY, accelerator_key)
-                end
-
-                def action_performed(event)
-                    processor = SlickRubyGame::IDE::State::IDEState.instance.command_processor
-                    processor.handle(@command)
-                end
-
-            end
             class MainMenu < JMenuBar
 
                 def initialize
@@ -36,12 +23,23 @@ module SlickRubyGame
 
                 def file_menu
                     file_menu = JMenu.new('File')
+                    file_menu.add(add_level_menu_item)
                     return file_menu
                 end
 
+                def add_level_menu_item
+                    item = JMenuItem.new('New Level')
+                    listener = SlickRubyGame::IDE::Commands::BlockActionListener.on_action do
+                        processor = SlickRubyGame::IDE::State::IDEState.instance.command_processor
+                        processor.handle(SlickRubyGame::IDE::Commands::AddLevelCommand.new)
+                    end
+                    item.add_action_listener(listener)
+                    return item
+                end
+
                 def add_level_action
-                    action = MenuAction.new('New Level', 'Add a new level to your game', KeyEvent::VK_L)
-                    
+                    command = SlickRubyGame::IDE::Commands::AddLevelCommand.new
+                    action = MenuAction.new('New Level', 'Add a new level to your game', KeyEvent::VK_L, command)
                     return action
                 end
 
