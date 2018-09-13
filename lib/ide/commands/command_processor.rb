@@ -4,13 +4,14 @@ module SlickRubyGame
         module Commands
             class CommandProcessor
         
-                def initialize(ide)
-                    @ide = ide
+                def initialize(ide_state)
+                    @ide_state = ide_state
                 end
 
                 def handle(command)
-                    command.execute
+                    command.execute(@ide_state)
                 end
+                
             end
         end
     end

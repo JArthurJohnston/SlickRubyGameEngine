@@ -39,6 +39,4 @@ describe SlickRubyGame::GameBehavior do
             expect(@behavior.identifier).to be expected_id
         end
     end
-    
-
 end
