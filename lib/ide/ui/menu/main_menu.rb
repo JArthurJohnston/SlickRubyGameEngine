@@ -30,19 +30,14 @@ module SlickRubyGame
                 def add_level_menu_item
                     item = JMenuItem.new('New Level')
                     listener = SlickRubyGame::IDE::Commands::BlockActionListener.on_action do
+                        ide_state =  SlickRubyGame::IDE::State::IDEState.instance
                         processor = SlickRubyGame::IDE::State::IDEState.instance.command_processor
                         processor.handle(SlickRubyGame::IDE::Commands::AddLevelCommand.new)
                     end
                     item.add_action_listener(listener)
                     return item
                 end
-
-                def add_level_action
-                    command = SlickRubyGame::IDE::Commands::AddLevelCommand.new
-                    action = MenuAction.new('New Level', 'Add a new level to your game', KeyEvent::VK_L, command)
-                    return action
-                end
-
+                
             end
         end
     end

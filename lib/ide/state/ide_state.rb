@@ -8,14 +8,16 @@ module SlickRubyGame
         module State
             class IDEState
                 attr_accessor :game, 
-                            :selected_game_object, 
-                            :command_processor
-                @@instance = self.new
+                            :selected_game_object
         
                 def initialize
                     @game = build_default_game
                     @selected_game_object = @game
                     @command_processor = SlickRubyGame::IDE::Commands::CommandProcessor.new(self)
+                end
+
+                def command_processor
+                    return @command_processor
                 end
         
                 def build_default_game
@@ -26,6 +28,8 @@ module SlickRubyGame
                 def self.instance
                     return @@instance
                 end
+
+                @@instance = IDEState.new
             end
         end
     end
