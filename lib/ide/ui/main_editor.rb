@@ -13,7 +13,9 @@ java_import javax.swing.JFrame,
             org.newdawn.slick.CanvasGameContainer,
             javax.swing.JMenuBar,
             javax.swing.JMenu,
-            javax.swing.JMenuItem
+            javax.swing.JMenuItem,
+            javax.swing.JScrollPane,
+            java.awt.Dimension
 
 module SlickRubyGame
     module IDE
@@ -28,6 +30,10 @@ module SlickRubyGame
                     self.init_main_panels
                     self.init_menu
                 end
+
+                def add_scrollable(component, layout_position)
+                    add(JScrollPane.new(component), layout_position)
+                end
             
                 def init_menu
                     menu_bar = MainMenu.new
@@ -35,17 +41,19 @@ module SlickRubyGame
                 end
             
                 def init_main_panels
-                    game = @ide.game
-                    @main_game_panel = CanvasGameContainer.new(game)
-                    # @main_game_panel.set_background(Color::BLACK)
-                    game_heirarchy_tree = GameTree.new(game)
                     object_details_panel = JPanel.new
                     bottom_panel = JPanel.new
-            
-                    add(game_heirarchy_tree, BorderLayout::WEST)
+                    @main_game_panel = CanvasGameContainer.new(@ide.game)
+                    add(build_game_tree_panel, BorderLayout::WEST)
                     add(@main_game_panel, BorderLayout::CENTER)
                     add(object_details_panel, BorderLayout::EAST)
                     add(bottom_panel, BorderLayout::SOUTH)
+                end
+
+                def build_game_tree_panel
+                    scroll_pane = JScrollPane.new(GameTree.new(@ide.game))
+                    scroll_pane.set_preferred_size(Dimension.new(100, 768))
+                    return scroll_pane
                 end
             
                 def set_visible(is_visible)
