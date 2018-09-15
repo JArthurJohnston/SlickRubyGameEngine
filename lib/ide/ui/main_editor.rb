@@ -35,9 +35,10 @@ module SlickRubyGame
                 end
             
                 def init_main_panels
-                    @main_game_panel = CanvasGameContainer.new(@ide.game)
-                    @main_game_panel.set_background(Color::BLACK)
-                    game_heirarchy_tree = GameTree.new(@ide.game)
+                    game = @ide.game
+                    @main_game_panel = CanvasGameContainer.new(game)
+                    # @main_game_panel.set_background(Color::BLACK)
+                    game_heirarchy_tree = GameTree.new(game)
                     object_details_panel = JPanel.new
                     bottom_panel = JPanel.new
             

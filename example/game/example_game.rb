@@ -5,6 +5,9 @@ require 'srge/file_io'
 require_relative 'example_input'
 # require_relative 'example_train_level'
 
+java_import org.newdawn.slick.CanvasGameContainer,
+            javax.swing.JFrame
+
 class SlickRubyGame::Colliders::AbstractCollider
 
     def render(game_container, graphics)
@@ -136,4 +139,12 @@ workshop_level.add_game_object(bounding_llama_2)
 # SlickRubyGame::Serializing::FileIO.save(train_level, './train_level.json')
 # SlickRubyGame::Serializing::FileIO.save(workshop_level, './workshop_level.json')
 
-SRGE.start(game)
+# SRGE.start(game)
+
+game_canvas = CanvasGameContainer.new(game)
+frame = JFrame.new('Test Game')
+frame.add(game_canvas)
+frame.set_size(800,600)
+frame.set_default_close_operation(JFrame::EXIT_ON_CLOSE)
+frame.set_visible(true)
+game_canvas.start()

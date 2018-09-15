@@ -29,9 +29,7 @@ module SlickRubyGame
 
         def init(game_container)
             @game_container = game_container
-            unless(@current_level.nil?)
-                @current_level.init(game_container)
-            end
+            @current_level.init(game_container)
         end
 
         def update(game_container, delta)
@@ -51,13 +49,12 @@ module SlickRubyGame
             @levels.store(game_object.identifier, game_object)
             game_object.parent = self
             if @current_level.nil?
-                game_object.init(@game_container)
                 @current_level = game_object
             end
         end
 
         def game_objects
-            return @levels
+            return @levels.values
         end
 
         def retrieve_level(level_name)
