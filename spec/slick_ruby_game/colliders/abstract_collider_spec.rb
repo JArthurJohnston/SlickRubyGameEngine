@@ -23,6 +23,10 @@ describe AbstractCollider do
             expect(@abstract_collider.collision_triggers).to be_empty
             expect(@abstract_collider.finished_triggers).to be_empty
         end
+
+        it 'should have an empty list of tags' do
+            expect(@abstract_collider.tags).to be_empty
+        end
     end
 
     describe '#collides_with?' do

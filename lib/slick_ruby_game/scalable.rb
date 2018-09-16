@@ -32,5 +32,12 @@ module SlickRubyGame
             return parent.scale_y * @scale_y
         end
 
+        def center_x
+            return offset_x + (@width / 2)
+        end
+
+        def center_y
+            return offset_y + (@height / 2)
+        end
     end
 end

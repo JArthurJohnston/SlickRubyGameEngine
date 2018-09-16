@@ -7,13 +7,14 @@ module SlickRubyGame::Colliders
             attr_accessor :game_object, :triggered_method
         end
 
-        attr_accessor :shape
+        attr_accessor :shape, :tags
         attr_reader :collision_triggers, :finished_triggers
 
         def initialize
             super
             @collision_triggers = []
             @finished_triggers = []
+            @tags = []
         end
 
         def init(game_container)
