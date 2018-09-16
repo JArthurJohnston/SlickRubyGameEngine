@@ -50,5 +50,4 @@ describe 'SlidingBackground' do
 
     end
 
-
 end
