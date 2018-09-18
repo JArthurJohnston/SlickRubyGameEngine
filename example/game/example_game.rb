@@ -77,7 +77,13 @@ panel.height= 50
 panel.offset_x= 200
 panel.offset_y= 200
 panel.corner_radius= 7
-panel.background_color=[88, 109, 142, 128]
+panel.background_color(88, 109, 142, 255)
+
+text = SlickRubyGame::UI::Text.new
+text.color(255, 255, 255, 255)
+text.content= 'Its Alive!!!'
+
+panel.add_game_object(text)
 
 workshop_level.add_game_object(panel)
 

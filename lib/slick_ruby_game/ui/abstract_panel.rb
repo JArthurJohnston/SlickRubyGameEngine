@@ -10,24 +10,29 @@ module SlickRubyGame
     module UI
 
         class AbstractPanel < SlickRubyGame::GameObject
-            attr_reader, :background_color
+            attr_reader :background_color
 
             def render(game_container, graphics)
-                super
+                original_color = graphics.get_color
                 graphics.set_color(@background_color)
+                draw_shape(graphics)
+                graphics.set_color(original_color)
+                super
             end
 
-            def background_color=(rgba_array)
-                @background_color = Color.new(rgba_array[0], rgba_array[1], rgba_array[2], rgba_array[3])
+            def draw_shape(graphics)
+            end
+
+            def background_color(r, g, b, a)
+                @background_color = Color.new(r, g, b, a)
             end
         end
 
         class RoundedRectanglePanel < AbstractPanel
             attr_accessor :corner_radius
 
-            def render(game_container, graphics)
-                super
-                graphics.fill_round_rect(@offset_x, @offset_y, @width, @height, @corner_radius)
+            def draw_shape(graphics)
+                graphics.fill_round_rect(offset_x, offset_y, width, height, @corner_radius)
             end
 
         end
