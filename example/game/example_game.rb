@@ -2,6 +2,7 @@ require 'srge'
 require 'srge/sprites'
 require 'srge/colliders'
 require 'srge/file_io'
+require 'srge/ui'
 require_relative 'example_input'
 # require_relative 'example_train_level'
 
@@ -69,6 +70,16 @@ workshop_level.identifier= 'workshop'
 # workshop_level.add_game_object(load_train_collider)
 workshop_bottom_collider = SlickRubyGame::Colliders::LineCollider.new(0, 1010, 1920, 1010)
 workshop_level.add_game_object(workshop_bottom_collider)
+
+panel = SlickRubyGame::UI::RoundedRectanglePanel.new
+panel.width= 200
+panel.height= 50
+panel.offset_x= 200
+panel.offset_y= 200
+panel.corner_radius= 7
+panel.background_color=[88, 109, 142, 128]
+
+workshop_level.add_game_object(panel)
 
 train_level_loader = SlickRubyGame::Scripts::ScriptObject.new
 train_level_loader.module_name= 'LevelLoader'
