@@ -14,7 +14,7 @@ module SlickRubyGame
                 super
                 original_color = graphics.get_color
                 graphics.set_color(@color)
-                graphics.draw_string(@content, offset_x, offset_y)
+                graphics.draw_string(content, offset_x, offset_y)
                 graphics.set_color(original_color)
             end
 

@@ -79,9 +79,10 @@ panel.offset_y= 200
 panel.corner_radius= 7
 panel.background_color(88, 109, 142, 255)
 
-text = SlickRubyGame::UI::Text.new
+text = SlickRubyGame::UI::ScrollingText.new
 text.color(255, 255, 255, 255)
-text.content= 'Its Alive!!!'
+text.speed = 250
+text.content= 'Its Alive!!! My god its Alive!'
 
 panel.add_game_object(text)
 
